@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://web.resource.org/cc/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:svg="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1235 650">
+  <defs>
+    <polygon id="pt" points="-0.16246 0 0 -0.5 0.16246 0" transform="scale(.0616)" fill="#fff"/>
+    <g id="star">
+      <use xlink:href="#pt" transform="rotate(216)"/>
+      <use xlink:href="#pt" transform="rotate(-72)"/>
+      <use xlink:href="#pt"/>
+      <use xlink:href="#pt" transform="rotate(72)"/>
+      <use xlink:href="#pt" transform="rotate(144)"/>
+    </g>
+    <g id="s5">
+      <use x="-0.252" xlink:href="#star"/>
+      <use x="-0.126" xlink:href="#star"/>
+      <use xlink:href="#star"/>
+      <use x="0.126" xlink:href="#star"/>
+      <use x="0.252" xlink:href="#star"/>
+    </g>
+    <g id="s6">
+      <use x="-0.063" xlink:href="#s5"/>
+      <use x="0.315" xlink:href="#star"/>
+    </g>
+    <g id="x4">
+      <use xlink:href="#s6"/>
+      <use y="0.054" xlink:href="#s5"/>
+      <use y="0.108" xlink:href="#s6"/>
+      <use y="0.162" xlink:href="#s5"/>
+    </g>
+    <g id="union">
+      <use y="-0.216" xlink:href="#x4"/>
+      <use xlink:href="#x4"/>
+      <use y="0.216" xlink:href="#s6"/>
+    </g>
+    <rect id="stripe" width="1235" height="50" fill="#bf0a30"/>
+  </defs>
+  <rect width="1235" height="650" fill="#fff"/>
+  <use xlink:href="#stripe"/>
+  <use y="100" xlink:href="#stripe"/>
+  <use y="200" xlink:href="#stripe"/>
+  <use y="300" xlink:href="#stripe"/>
+  <use y="400" xlink:href="#stripe"/>
+  <use y="500" xlink:href="#stripe"/>
+  <use y="600" xlink:href="#stripe"/>
+  <rect width="494" height="350" fill="#002868"/>
+  <use xlink:href="#union" transform="translate(247,175) scale(650)"/>
+  <metadata>
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+        <cc:license rdf:resource="http://creativecommons.org/licenses/publicdomain/"/>
+        <dc:publisher>
+          <cc:Agent rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>Flag of the United States</dc:title>
+        <dc:date>2009-03-21T07:23:51</dc:date>
+        <dc:description>Source: http://commons.wikimedia.org/wiki/File:Flag_of_the_United_States.svg Comment on the oldest version on Commons: (from www.openclipart.org/clipart/signs_and_symbols/flags/america/united_states.svg, by Daniel McRae, PD) In newer versions, colors are a bit changed and file size is optimized (36 KB to 2 KB).</dc:description>
+        <dc:source>http://openclipart.org/detail/22700/flag-of-the-united-states-by-papapishu</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>papapishu</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>america</rdf:li>
+            <rdf:li>american</rdf:li>
+            <rdf:li>clip art</rdf:li>
+            <rdf:li>clipart</rdf:li>
+            <rdf:li>country</rdf:li>
+            <rdf:li>externalsource</rdf:li>
+            <rdf:li>flag</rdf:li>
+            <rdf:li>nation</rdf:li>
+            <rdf:li>national</rdf:li>
+            <rdf:li>north america</rdf:li>
+            <rdf:li>sign</rdf:li>
+            <rdf:li>united nations member</rdf:li>
+            <rdf:li>usa</rdf:li>
+            <rdf:li>wikimedia commons</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>
