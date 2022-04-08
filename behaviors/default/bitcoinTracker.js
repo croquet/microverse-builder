@@ -37,15 +37,15 @@ class BitcoinTrackerPawn {
 
         this.onBTCUSDChanged();
 
-        console.log("bitcoin pawn, setup");
-
-        if (this.call("ElectedPawn", "isElected")) {
-            console.log("elected in setup");
-            this.handleElected();
-        }
-
         this.scriptListen("handleElected", this.handleElected);
         this.scriptListen("handleUnelected", this.handleUnelected);
+
+        // I have a trouble thinking about the right thing to do here.
+        // this is awful to just check the value.
+        // this.say("electionStatusRequested");
+        if (this.electedViewId === this.viewId) {
+            this.handleElected();
+        }
     }
 
     handleElected() {
@@ -90,7 +90,7 @@ class BitcoinTrackerPawn {
     }
 
     latest() {
-        return this.actor.call("BitcoinTrackerActor", "latest");
+        return this.actorCall("BitcoinTrackerActor", "latest");
     }
 
     fetchHistory() {
