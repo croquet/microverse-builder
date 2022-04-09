@@ -16,7 +16,7 @@ export function init(Model, Constants) {
 
     Constants.UserBehaviorDirectory = "behaviors/default";
     Constants.UserBehaviorModules = [
-        "demo.js", "bitcoinTracker.js", "bridge.js", "spin.js", "lights.js"
+        "demo.js", "bitcoinTracker.js", "bridge.js", "flightTracker.js", "spin.js", "lights.js"
     ];
 
     const frameColor = 0x888888;
@@ -175,23 +175,12 @@ export function init(Model, Constants) {
             {
                 card: {
                     name:'flightTracker',
-                    className: "FlightTracker",
                     translation: [-4, 1.5, -50],
-                    //rotation: [0, Math.PI / 2, 0],
-                    //scale: [4, 4, 4],
-                    //width: 1,
-                    //height: 1,
+                    type: "object",
+                    behaviorModules: ["Elected", "FlightTracker", "Spin"],
                     layers: ['pointer'],
                     multiuser: true,
-                    type: "object",
-                    //dataLocation: "./assets/SVG/full-circle.svg",
-                    //textureType: "dynamic",
-                    //textureWidth: 1024,
-                    //textureHeight: 1024,
-                    //frameColor: frameColor,
                     color: 0xaaaaaa,
-                    //depth: 0.05,
-                    //fullBright: true,
                 }
             },
             {
