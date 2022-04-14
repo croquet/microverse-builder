@@ -121,6 +121,7 @@ class BridgePawn {
                 for (let i = 0; i < d; i++) {
                     this.group.remove(row[i]);
                 }
+                this.group.children = [];
             }
         }
 
@@ -135,7 +136,7 @@ class BridgePawn {
             });
         });
         this.renderObject.add(this.group);
-        this.scriptListen("updateDisplay", "updateDisplay");
+        this.listen("updateDisplay", "updateDisplay");
 
         this.removeEventListener("pointerDoubleDown", "onPointerDoubleDown");
         this.addEventListener("pointerDoubleDown", "nop");

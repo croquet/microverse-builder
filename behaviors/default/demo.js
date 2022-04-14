@@ -1,9 +1,13 @@
 class DriveActor {
     setup() {
-        if (this.speed === undefined) this.speed = 0;
-        if (this.angle === undefined) this.angle = 0;
-        this.addEventListener("pointerDown", "toggle");
+        if (this.speed === undefined) this.speed = 0.1;
+        if (this.angle === undefined) this.angle = 0.02;
+        if (this.running === undefined) {
+            this.running = true;
+            this.run();
+        }
         this.addEventListener("keyDown", "control");
+        // this.scriptSubscribe("scope", "newAngle", "newAngle");
     }
 
     run() {
@@ -13,12 +17,13 @@ class DriveActor {
         this.forwardBy(-this.speed);
     }
 
-    toggle() {
-        this.running = !this.running;
-        if (this.running) {
-            this.run();
-        }
+    /*
+    newAngle(angle) {
+        // angle = angle / 20;
+        // console.log(angle);
+        this.angle = angle;
     }
+    */
 
     rotateBy(angles) {
         let q = Worldcore.q_euler(...angles);
@@ -107,11 +112,11 @@ class PerlinActor {
 
         this.initPerlin(firstTime);
 
-        this.scriptListen("hiliteRequest", "hilite");
-        this.scriptListen("unhiliteRequest", "unhilite");
-        this.scriptListen("showHideRequest", "showHide");
-        this.scriptListen("enterHiliteRequest", "enterHilite");
-        this.scriptListen("leaveHiliteRequest", "leaveHilite");
+        this.listen("hiliteRequest", "hilite");
+        this.listen("unhiliteRequest", "unhilite");
+        this.listen("showHideRequest", "showHide");
+        this.listen("enterHiliteRequest", "enterHilite");
+        this.listen("leaveHiliteRequest", "leaveHilite");
     }
 
     hilite(_p3d) {
@@ -283,9 +288,9 @@ class PerlinNoise {
 class PerlinPawn {
     setup() {
         console.log("PerlinPawn");
-        this.scriptListen("updatePerlin", "updatePerlin");
-        this.scriptListen("showMe", "showMe");
-        this.scriptListen("hilite", "hilite");
+        this.listen("updatePerlin", "updatePerlin");
+        this.listen("showMe", "showMe");
+        this.listen("hilite", "hilite");
         this.isConstructed = false;
 
         this.addEventListener("pointerDown", "onPointerDown");

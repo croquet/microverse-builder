@@ -1,7 +1,8 @@
 class SpinActor {
     setup() {
-        this.scriptListen("startSpinning", "startSpinning");
-        this.scriptListen("stopSpinning", "stopSpinning");
+        this.listen("startSpinning", "startSpinning");
+        this.listen("stopSpinning", "stopSpinning");
+        this.listen("newAngle", "newAngle");
     }
     
     startSpinning(spin) {
@@ -21,10 +22,15 @@ class SpinActor {
         this.isSpinning = false;
     }
 
+    newAngle(newAngle) {
+        this.publish("scope", "newAngle", newAngle);
+    }
+
     destroy() {
         delete this.isSpinning;
         this.unsubscribe(this.id, "startSpinning");
         this.unsubscribe(this.id, "stopSpinning");
+        this.unsubscribe(this.id, "newAngle");
     }
 }
 
@@ -36,27 +42,38 @@ class SpinPawn {
     }
 
     theta(xyz) {
-        let local = this.world2local(xyz);
-        return Math.atan2(local[0], local[2]);
+        // As the thing itself rotates, we need to get the "theta" in global.
+        let origin = this.translation;
+        return (Math.atan2(origin[2] - xyz[2], xyz[0] - origin[0]) + Math.PI * 2) % (Math.PI * 2);
     }
 
     onPointerDown(p3d) {
-        console.log("down");
         this.base = this.theta(p3d.xyz);
-        this.deltaAngle = 0;
+        this.baseRotation = [...this._rotation];
         this.say("stopSpinning");
+        this.moveBuffer = [];
     }
 
     onPointerMove(p3d) {
+        this.moveBuffer.push(p3d.xyz);
+        if (this.moveBuffer.length > 3) {
+            this.moveBuffer.shift();
+        }
         let next = this.theta(p3d.xyz);
-        this.deltaAngle = (next - this.base) / 2;
-        let qAngle = Worldcore.q_euler(0, this.deltaAngle, 0);
-        this.setRotation(Worldcore.q_multiply(this._rotation, qAngle));
+        let newAngle = ((next - this.base) + Math.PI * 2) % (Math.PI * 2);
+        let qAngle = Worldcore.q_euler(0, newAngle, 0);
+        this.setRotation(Worldcore.q_multiply(this.baseRotation, qAngle));
+        newAngle = newAngle < Math.PI ? newAngle : newAngle - Math.PI * 2;
+        this.say("newAngle", newAngle);
     }
 
     onPointerUp(p3d) {
         if(p3d.xyz){ // clean up and see if we can spin
+            if (this.moveBuffer.length < 3) {return;}
+            let prev = this.theta(this.moveBuffer[0]);
+            let next = this.theta(p3d.xyz);
             this.onPointerMove(p3d);
+            this.deltaAngle = (next + (Math.PI * 2)) % (Math.PI * 2) - (prev + (Math.PI * 2)) % (Math.PI * 2)
             if(Math.abs(this.deltaAngle) > 0.001) {
                 let a = this.deltaAngle;
                 a = Math.min(Math.max(-0.1, a), 0.1);

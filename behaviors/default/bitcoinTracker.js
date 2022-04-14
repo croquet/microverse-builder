@@ -3,8 +3,8 @@ class BitcoinTrackerActor {
         if (!this.history) {
             this.history = [{ date: 0, amount: 0 }];
         }
-        this.scriptListen("BTC-USD", this.onBitcoinData);
-        this.scriptListen("BTC-USD-history", this.onBitcoinHistory);
+        this.listen("BTC-USD", "onBitcoinData");
+        this.listen("BTC-USD-history", "onBitcoinHistory");
     }
 
     latest() {
@@ -33,24 +33,21 @@ class BitcoinTrackerActor {
 class BitcoinTrackerPawn {
     setup() {
         this.lastAmount = 0;
-        this.listenDeck("value-changed", this.onBTCUSDChanged);
+        this.listenDeck("value-changed", "onBTCUSDChanged");
 
         this.onBTCUSDChanged();
 
-        this.scriptListen("handleElected", this.handleElected);
-        this.scriptListen("handleUnelected", this.handleUnelected);
+        this.listen("handleElected", "handleElected");
+        this.listen("handleUnelected", "handleUnelected");
 
-        // I have a trouble thinking about the right thing to do here.
-        // this is awful to just check the value.
-        // this.say("electionStatusRequested");
-        if (this.electedViewId === this.viewId) {
-            this.handleElected();
-        }
+        this.say("electionStatusRequested");
     }
 
-    handleElected() {
-        console.log("bitcoin elected");
-        this.fetchHistory().then(() => this.openSocket());
+    handleElected(data) {
+        if (!data || data.to === this.viewId) {
+            console.log("bitcoin elected");
+            this.fetchHistory().then(() => this.openSocket());
+        }
     }
 
     handleUnelected() {
@@ -140,7 +137,7 @@ class BitcoinTrackerPawn {
 class BitLogoPawn {
     setup() {
         // this is a case where a method of the base object is called.
-        this.scriptSubscribe(this.actor._parent.id, 'setColor', "setColor");
+        this.subscribe(this.actor._parent.id, 'setColor', "setColor");
         this.removeEventListener("pointerWheel", "onPointerWheel");
     }
 }
@@ -152,8 +149,8 @@ class BarGraphActor {
             this._cardData.length = 20;
             this._cardData.height = 0.5;
         }
-        this.scriptSubscribe(this._parent.id, "value-changed", this.updateBars);
-        this.scriptSubscribe(this._parent.id, "value-init", this.initBars);
+        this.subscribe(this._parent.id, "value-changed", this.updateBars);
+        this.subscribe(this._parent.id, "value-init", this.initBars);
     }
     
     length() {
@@ -189,8 +186,8 @@ class BarGraphActor {
 class BarGraphPawn {
     setup() {
         this.constructBars();
-        this.scriptListen('updateGraph', this.updateGraph);
-        this.scriptSubscribe(this.actor._parent.id, 'setColor', this.setColor);
+        this.listen('updateGraph', "updateGraph");
+        this.subscribe(this.actor._parent.id, 'setColor', "setColor");
         this.updateGraph();
         this.removeEventListener("pointerWheel", "onPointerWheel");
     }

@@ -1,7 +1,7 @@
 class FlightTrackerActor {
     setup() {
-        this.scriptListen("processFlight", this.processFlight);
-        this.scriptListen("updateFlight", this.updateFlight);
+        this.listen("processFlight", "processFlight");
+        this.listen("updateFlight", "updateFlight");
         this.planes = new Map();
     }
 
@@ -25,16 +25,14 @@ class FlightTrackerActor {
 
 class FlightTrackerPawn {
     setup() {
-        this.scriptListen("displayFlight", this.displayFlight);
+        this.listen("displayFlight", "displayFlight");
         this.constructEarth();
         this.chunkSize = 100; //number of plane records to send
 
-        // I have a trouble thinking about the right thing to do here.
-        // this is awful to just check the value.
-        // this.say("electionStatusRequested");
-        if (this.electedViewId === this.viewId) {
-            this.handleElected();
-        }
+        this.listen("handleElected", "handleElected");
+        this.listen("handleUnelected", "handleUnelected");
+
+        this.say("electionStatusRequested");
     }
 
     constructEarth() {
@@ -127,12 +125,16 @@ class FlightTrackerPawn {
         this.planes.geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( vertices, 3 ) );
     }
 
-    handleElected() {
-        this.rawPlanes = [];
-        this.processFlight();
+    handleElected(data) {
+        if (!data || data.to === this.viewId) {
+            console.log("flight tracker elected");
+            this.rawPlanes = [];
+            this.processFlight();
+        }
     }
 
     handleUnelected() {
+        console.log("flight tracker unelected");
         this.closeSocket();
     }
 
