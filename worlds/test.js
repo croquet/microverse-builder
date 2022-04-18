@@ -11,7 +11,7 @@ export function init(Constants) {
 
     Constants.SystemBehaviorDirectory = "behaviors/croquet";
     Constants.SystemBehaviorModules = [
-        "menu.js", "elected.js", "propertyPanel.js"
+        "menu.js", "elected.js", "propertySheet.js"
     ];
 
     Constants.UserBehaviorDirectory = "behaviors/default";
@@ -50,5 +50,16 @@ export function init(Constants) {
                 dataType: "jpg",
             }
         },
+        {
+            card: {
+                name:'simple 3D model',
+                translation: [-4, -0.5, -18],
+                rotation: [Math.PI / 2, Math.PI / 2, 0],
+                type: "3d",
+                dataLocation: "./assets/3D/Gears.glb.zip",
+                shadow: true,
+                singleSided: true,
+            }
+         },
     ];
 }
