@@ -24,11 +24,11 @@ export function init(Constants) {
     Constants.DefaultCards = [
         {
             card: {
-                name:'world model',
+                name:"world model",
                 translation:[0, -10, -60],
                 scale:[200, 200, 200],
                 rotation: [0, Math.PI, 0],
-                layers: ['walk'],
+                layers: ["walk"],
                 type: "3d",
                 // dataLocation: "./assets/3D/Oil Refinery 6.glb.zip",
                 singleSided: true,
@@ -42,24 +42,13 @@ export function init(Constants) {
         },
         {
             card: {
-                name: 'light',
-                layers: ['light'],
+                name: "light",
+                layers: ["light"],
                 type: "lighting",
                 behaviorModules: ["Light"],
                 dataLocation: "./assets/sky/abandoned_parking_4k.jpg",
                 dataType: "jpg",
             }
         },
-        {
-            card: {
-                name:'simple 3D model',
-                translation: [-4, -0.5, -18],
-                rotation: [Math.PI / 2, Math.PI / 2, 0],
-                type: "3d",
-                dataLocation: "./assets/3D/Gears.glb.zip",
-                shadow: true,
-                singleSided: true,
-            }
-         },
     ];
 }
