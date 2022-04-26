@@ -71,7 +71,7 @@ export function init(Constants) {
                 //rotation:[0, Math.pi/4, 0],
                 shadow: true,
             }
-        },     
+        },
         {
             card: {
                 name:"Imported Box",
@@ -83,6 +83,24 @@ export function init(Constants) {
                 //rotation:[0, Math.pi/4, 0],
                 shadow: true,
             }
-        },     
+        },
+        {
+            card: {
+                name: "portal",
+                className: "PortalActor",
+                translation: [8, 0.4, -5],
+                rotation: [0, Math.PI / 2, 0],
+                type: "2d",
+                layers: ["pointer"],
+                behaviorModules: ["Spin"],
+                color: 0xFF66CC,
+                frameColor: frameColor,
+                width: 2,
+                height: 2,
+                depth: 0.05,
+                cornerRadius: 0.05,
+                targetURL: "?world=portal1&q=llepplm7k3#pw=YAv65WDiOrW7jFMVSACd6g",
+            }
+        },
     ];
 }

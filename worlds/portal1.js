@@ -174,6 +174,24 @@ export function init(Constants) {
         },
         {
             card: {
+                name: "portal",
+                className: "PortalActor",
+                translation: [-4, cardHeight, -40],
+                rotation: [0, Math.PI / 2, 0],
+                type: "2d",
+                layers: ["pointer"],
+                behaviorModules: ["Spin"],
+                color: 0xFF66CC,
+                frameColor: frameColor,
+                width: 4,
+                height: 4,
+                depth: 0.05,
+                cornerRadius: 0.05,
+                targetURL: "?world=portal2&q=zz7wltu2pv#pw=YuPGUxzqQ3nU5eoglP9WhA",
+            }
+        },
+        {
+            card: {
                 name:"flightTracker",
                 translation: [-4, 2, -50],
                 type: "object",
