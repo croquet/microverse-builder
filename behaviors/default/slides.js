@@ -56,7 +56,6 @@ class SlidesPawn {
             });
         }).then((textureData) => {
             let {width, height, texture} = textureData;
-            console.log(width, height);
             let material = new THREE.MeshStandardMaterial({map: texture});
             this.cube.material = material;
         });
