@@ -19,7 +19,7 @@ Please refer to the QuickStart.md in the `docs` directory to get started. Key co
 4. Create the apiKey.js file.
    <br>`CROQUET_APIKEY=ENTER_YOUR_APIKEY_HERE CROQUET_APPID=ENTER_YOUR_APPID_HERE scripts/make_apiKey.js`
  
-5. In the terminal run 
+5. Install and start the Microverse IDE
 
 ```npm i```
 
