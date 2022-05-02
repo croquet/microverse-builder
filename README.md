@@ -20,12 +20,9 @@ Please refer to the QuickStart.md in the `docs` directory to get started. Key co
    <br>`CROQUET_APIKEY=ENTER_YOUR_APIKEY_HERE CROQUET_APPID=ENTER_YOUR_APPID_HERE scripts/make_apiKey.js`
  
 5. Install and start the Microverse IDE
-
-```npm i```
-
-and then
-
-```npm start```
+    <br>`npm i` - install
+    <br> then
+    <br>`npm start` - start
 
 6. Open browser at `localhost:9684` and enter a new world.
 
