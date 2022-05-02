@@ -17,8 +17,8 @@ This guide will enable you to quickly set up the Croquet Microverse Builder. Ref
 2. Obtain your Croquet API Key from <https://croquet.io/keys/>.
 3. Change the working directory to your new `microverse-builder` folder.
     <br>`cd microverse-builder`
-4. Create the apiKey.js file from a copy of the apiKey.js-example file, the API Key above, and a dot separated name for the appId.
-    <br>`cp apiKey.js-example apiKey.js # and edit apiKey.js`
+4. Create the apiKey.js file using the API Key above, and a dot separated name for the appId.
+    <br>`CROQUET_APIKEY=ENTER_YOUR_APIKEY_HERE CROQUET_APPID=ENTER_YOUR_APPID_HERE scripts/make_apiKey.js`
 5. Install the packages `npm install` then start the server `npm start`
 6. Enter the Croquet Microverse by opening a browser at `localhost:9684`.
 7. Copy the URL shown in the browser tab and copy it into a new tab. Also, replace `localhost` in the URL with the IP address of the computer (e.g. 192.168.0.123) and open it from another device on the local network.
@@ -27,7 +27,6 @@ This guide will enable you to quickly set up the Croquet Microverse Builder. Ref
 ---
 
 ### Prerequisite
-
 1. Npm. Please refer to the installation page on [npmjs.com](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
 2. Git. Please refer to the installation page on [git-scm.com](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
 
@@ -49,7 +48,12 @@ Developing any Croquet application requires an API key that you can obtain from 
 Create a Croquet account by following the the "Create one here" link on the sign in page. Once you sign up, your first key is automatically generated. Additional application specific API keys with URL restrictions can be created as well.  (See the deployment section of this document for further details).
 
 ### Create the apiKey.js File
-Create a file called `apiKey.js` by copying `apiKey.js-example` to `apiKey.js`. Then edit the two properties in the file named `apiKey` and `appId`. The appId needs to be [dot-separated words](https://developer.android.com/studio/build/application-id), such as "com.example.myapp". Refer to [join](https://croquet.io/docs/croquet/Session.html#.join) for other parameters you can specify.
+Create a file called `apiKey.js` by running the script `scripts/make_apiKey.js` with parameters passed into it.  The two parameters that are required to build a proper apiKey.js file are the API key from above and an Application ID.  
+```
+CROQUET_APIKEY=ENTER_YOUR_APIKEY_HERE CROQUET_APPID=ENTER_YOUR_APPID_HERE scripts/make_apiKey.js
+```
+
+Alternatively, create a file called `apiKey.js` by copying `apiKey.js-example` to `apiKey.js`. Then edit the two properties in the file named `apiKey` and `appId`. The appId needs to be [dot-separated words](https://developer.android.com/studio/build/application-id), such as "com.example.myapp". Refer to [join](https://croquet.io/docs/croquet/Session.html#.join) for other parameters you can specify.
 
 #### apiKey.js-example
 
