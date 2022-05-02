@@ -16,8 +16,8 @@ Please refer to the QuickStart.md in the `docs` directory to get started. Key co
 2. Obtain your Croquet API Key from <https://croquet.io/keys/>.
 3. Open a terminal and change the working directory to your new Microverse-Builder folder.
    <br>`cd microverse-builder`
-4. Create the apiKey.js file from apiKey.js-example and the API Key above.
-   <br>`cp apiKey.js-example apiKey.js # and edit apiKey.js`
+4. Create the apiKey.js file.
+   <br>`CROQUET_APIKEY=ENTER_YOUR_APIKEY_HERE CROQUET_APPID=ENTER_YOUR_APPID_HERE scripts/make_apiKey.js`
  
 5. In the terminal run 
 
