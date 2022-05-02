@@ -9,7 +9,7 @@ export function init(Constants) {
 
     Constants.SystemBehaviorDirectory = "behaviors/croquet";
     Constants.SystemBehaviorModules = [
-        "menu.js", "elected.js", "propertySheet.js", "rapier.js"
+        "menu.js", "elected.js", "propertySheet.js", "stickyNote.js", "rapier.js"
     ];
 
     Constants.UserBehaviorDirectory = "behaviors/default";
@@ -333,6 +333,21 @@ export function init(Constants) {
                 behaviorModules: ["BarGraph"],
             }
         },
+        {
+            card: {
+                name:"kill plane",
+                type: "object",
+                translation: [bt[0], bt[1] - 3, bt[2]],
+                behaviorModules: ["Rapier", "Collider"],
+                rapierSize: [baseSize[0] * 3, baseSize[1] * 3, baseSize[2] * 3],
+                color: 0x997777,
+                rapierShape: "cuboid",
+                rapierType: "positionBased",
+                rapierSensor: true,
+                shadow: true,
+            }
+        },
+        
         {
             card: {
                 name:"base",

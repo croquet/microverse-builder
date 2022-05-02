@@ -9,7 +9,7 @@ export function init(Constants) {
 
     Constants.SystemBehaviorDirectory = "behaviors/croquet";
     Constants.SystemBehaviorModules = [
-        "menu.js", "elected.js", "propertySheet.js"
+        "menu.js", "elected.js", "propertySheet.js", "stickyNote.js"
     ];
 
     Constants.UserBehaviorDirectory = "behaviors/default";
@@ -58,7 +58,7 @@ export function init(Constants) {
                 rotation: [0, 0, 0],
                 depth: 0.05,
                 type: "2d",
-                layers: ["pointer"],
+                layers: ["pointer", "portal"],
                 behaviorModules: ["Spin"],
                 // textureType: "image",
                 // textureLocation: "./assets/images/earthbase.png",
@@ -68,6 +68,7 @@ export function init(Constants) {
                 height: 4,
                 cornerRadius: 0.05,
                 shadow: true,
+                multiuser: true,
                 targetURL: "?world=default&q=hf1c8u7b04#pw=2VFO_4QYZOb2-sxdS5--ig",
             }
         },

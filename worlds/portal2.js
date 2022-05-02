@@ -10,7 +10,7 @@ export function init(Constants) {
 
     Constants.SystemBehaviorDirectory = "behaviors/croquet";
     Constants.SystemBehaviorModules = [
-        "menu.js", "elected.js", "propertySheet.js"
+        "menu.js", "elected.js", "propertySheet.js", "stickyNote.js"
     ];
 
     Constants.UserBehaviorDirectory = "behaviors/demoWorld";
@@ -91,7 +91,7 @@ export function init(Constants) {
                 translation: [8, 0.4, -5],
                 rotation: [0, -Math.PI / 2, 0],
                 type: "2d",
-                layers: ["pointer"],
+                layers: ["pointer", "portal"],
                 color: 0xFF66CC,
                 frameColor: frameColor,
                 width: 2,
