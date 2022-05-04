@@ -4,6 +4,7 @@ class ColliderActor {
         let rapierType = this._cardData.rapierType;
         let rapierShape = this._cardData.rapierShape;
         let rapierSensor = this._cardData.rapierSensor;
+        let rapierForce = this._cardData.rapierForce;
         if (rapierType === "positionBased") {
             kinematic = Worldcore.RAPIER.RigidBodyDesc.newKinematicPositionBased();
         } else if (rapierType === "static") {
@@ -39,6 +40,10 @@ class ColliderActor {
         if (!rapierType) {
             this.addEventListener("pointerTap", "jolt");
         }
+
+        if (rapierForce) {
+            this.rigidBody.applyForce(rapierForce);
+        }
         this.listen("translating", "translated");
     }
 
@@ -52,7 +57,7 @@ class ColliderActor {
 
     translated() {
         // may not be a very efficient way to detect it
-        if (this._translation[1] < -1000) {
+        if (this._translation[1] < -10) {
             this.destroy();
         }
     }
@@ -107,12 +112,124 @@ class ColliderPawn {
     }
 }
 
+class SprayActor {
+    setup() {
+        if (this.running === undefined) {
+            this.running = true;
+            this.spray();
+        }
+        this.addEventListener("pointerDown", "toggle");
+    }
+
+    randomColor() {
+        let h = Math.random();
+        let s = 0.8;
+        let v = 0.8;
+        let r, g, b, i, f, p, q, t;
+        i = Math.floor(h * 6);
+        f = h * 6 - i;
+        p = v * (1 - s);
+        q = v * (1 - f * s);
+        t = v * (1 - (1 - f) * s);
+        switch (i % 6) {
+            case 0: r = v, g = t, b = p; break;
+            case 1: r = q, g = v, b = p; break;
+            case 2: r = p, g = v, b = t; break;
+            case 3: r = p, g = q, b = v; break;
+            case 4: r = t, g = p, b = v; break;
+            case 5: r = v, g = p, b = q; break;
+        }
+        return ((Math.round(r * 255) << 16) +
+                (Math.round(g * 255) << 8) +
+                Math.round(b * 255))
+    }
+
+    spray() {
+        if (!this.running) {return;}
+        this.future(500).spray();
+
+        const bt = [-20, 0, 53]; // bt for base translation
+
+        let x = Math.random() * 200 - 100;
+        let z = Math.random() * -100;
+        let shape;
+        let size;
+
+        let dice = Math.random();
+
+        if (dice < 0.1) {
+            this.createCard({
+                name:"earth",
+                type: "object",
+                translation: [bt[0], 19, bt[2] - 2],
+                layers: ["pointer"],
+                scale: [0.25, 0.25, 0.25],
+                behaviorModules: ["Rapier", "FlightTracker", "Collider"],
+                rapierSize: 2,
+                rapierShape: "ball",
+                rapierForce: {x, y: 100, z},
+                shadow: true,
+            });
+            return;
+        }
+
+        if (dice < 0.2) {
+            this.createCard({
+                name:"wooden box",
+                type: "object",
+                translation: [bt[0], 19, bt[2] - 2],
+                layers: ["pointer"],
+                behaviorModules: ["Rapier", "Slides", "Collider"],
+                rapierSize: [1, 1, 1],
+                rapierShape: "cuboid",
+                rapierForce: {x, y: 100, z},
+                slides: ["3Ty3Bbs4szi78KqNTyGrH0FVMEqE023P_eSIBhC8knE4PCAgJCdue3syPTgxJ3ohJ3o3JjslITEgej07eyF7EzACNi04HScVPwU3FgwwZxMsNSItIwEfAw0NZns9O3o3JjslITEgejk9NyY7IjEmJzF7PTs9AQIbOwY-Ag1mI2YtMTdjAy44GGxhGBsmHQU-AT4cMCYSImAcGSBnZHswNSA1exIeHBALYiMgPBcAYxwtYh0CBAQ_G2EyYx8sEm0WFjsOFSNiDDItAGMhNxk", "3V_rhbXp8a1PLyayumtWeAAGGfyLTKjRrD4suceOjMuoPiIiJiVseXkwPzozJXgjJXg1JDknIzMieD85eSN5ETIANC86HyUXPQc1FA4yZREuNyAvIQMdAQ8PZHk_OXg1JDknIzMieDs_NSQ5IDMkJTN5Pzk_AwAZOQQ8AA9kIWQvMzVhASw6Gm5jGhkkHwc8AzweMiQQIGIeGyJlZnkyNyI3eT00JBoDOWACJxcHFC4OBQljGCM8GwEsPyAbHhwkBxsEbgEzARIkIBIFZxM"],
+                shadow: true,
+            });
+            return;
+        }
+
+        let color = this.randomColor();
+
+        if (dice < 0.6) {
+            shape = "cuboid";
+            size = [1, 1, 1];
+        } else {
+            shape = "ball";
+            size = 2;
+        }
+
+        this.createCard({
+            type: "object",
+            layers: ["pointer"],
+            translation: [bt[0], 19, bt[2] - 2],
+            behaviorModules: ["Rapier", "Collider"],
+            rapierSize: size,
+            rapierForce: {x, y: 100, z},
+            rapierShape: shape,
+            color: color,
+            shadow: true,
+        });
+    }
+
+    toggle() {
+        this.running = !this.running;
+        if (this.running) {
+            this.spray();
+        }
+    }
+}
+
 export default {
     modules: [
         {
             name: "Collider",
             actorBehaviors: [ColliderActor],
             pawnBehaviors: [ColliderPawn]
+        },
+        {
+            name: "Spray",
+            actorBehaviors: [SprayActor],
         }
     ]
 }
