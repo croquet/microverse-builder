@@ -1,40 +1,52 @@
 # Croquet Microverse Builder
 
-![Croquet](https://www.croquet.io/images/logo.png)
-![Microverse Screenshot](https://www.croquet.io/images/microversess.png)
-
-Visit croquet.io to learn more or join the [Croquet Community Discord](https://discord.gg/9U9MKSbJXS).
-
-[![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/croquetio.svg?style=social&label=Follow%20%40croquetio)](https://twitter.com/croquetio) on Twitter for important announcements.
+![Microverse Screenshot](https://croquet.io/images/microversess.png)
 
 ## Description
-The Croquet Microverse Builder is a Framework and Toolset for JavaScript Developers to build immersive 3D virtual spaces in the Open Metaverse.  Spaces are constructed with 3 key concepts.
-* Cards - Objects in a space
-* Behaviors - Definitions on how cards behave upon interactions
-* Connectors - Enable access to external data streams
+
+Croquet Microverse Builder is a framework to build multiplayer immersive 3D virtual worlds on the web. It is built on the Croquet OS and the Worldcore framework with some other key features.
+
+* [Croquet OS](https://croquet.io/docs/croquet) provides a clean substrate to build multiuser applications.
+* [Worldcore Framework](https://croquet.io/docs/worldcore) provides an abstraction to build 3D applications on top of Croquet OS.
+* "Cards" and "Behaviors" abstractions provides a uniform object model, and pluggable bahavior descriptions for those objects.It also allows integration with your text editor to support multiuser live programming.
+* [Three.JS](https://threejs.org) provides instustrial strength 3D rendering backend.
+* All Web technology in your browser is available to access different media, real world data into the virtual world, and vice versa.
+
+By combining all together, Croquet Microverse Builder helps developers to create a metaverse world interactively and quickly. And, the deployed web app requires zero-installation to run on users computers.
 
 ## Documentation
-Microverse IDE Documentation is located in the `docs` directory.  
-* docs/QuickStart.md - Quick Start guide to Microverse IDE
-* docs/Tutorial.md - Tutorial on using the Microverse IDE
-* docs/CardSpec.md - Specification for Microverse Cards 
-* docs/Development.md - Development Guide on building Microverses
-* docs/Rapier.md - Using the Rapier Physics Engine in Microverses
 
-Croquet OS Documentation is available at https://croquet.io/docs/croquet/
+The documentation for the Microverse Builder is located in the [docs](./docs) directory.
+
+* [docs/QuickStart.md](./docs/QuickStart.md) - Quick Start guide to Microverse IDE
+* [docs/Tutorial.md](./docs/Tutorial.md) - Tutorial on using the Microverse IDE
+* [docs/CardSpec.md](./docs/CardSpec.md) - Specification for Microverse Cards 
+* [docs/Development.md](./docs/Development.md) - Development Guide on building Microverses
+* [docs/Rapier.md](./docs/Rapier.md) - Using the Rapier Physics Engine in Microverses
 
 ## Installation
-Please refer to the QuickStart.md in the `docs` directory to get started. Key concepts and the features of Croquet Microverse and development workflow are explained in other documents in `docs`. The following is the bare minimum steps to take to run Croquet Microverse on your computer:
+Please refer to the [docs/QuickStart.md](./docs/QuickStart.md) to get started.
 
-### Prerequisites
-* [node.js](https://nodejs.org/)
-* [Git](https://git-scm.com/).
-* Working Knowledge of [Javascript](https://www.javascript.com/)
-* Web Browser such as [Chrome](https://www.google.com/chrome) or [Safari](https://www.apple.com/safari/)
+If you just want to try it out quickly, follow these steps:
 
-## Discuss / Contribute
-Join the [Croquet Community Discord](https://discord.gg/9U9MKSbJXS) talk about the Microverse IDE.  We love to hear your feedback; positive or critical.
+1. Clone or fork the Github repository from <https://github.com/croquet/microverse-builder>.
+   <br>`git clone https://github.com/croquet/microverse-builder.git` 
+2. Obtain your Croquet API Key from <https://croquet.io/keys/>.
+3. Open a terminal and change the working directory to your new Microverse-Builder folder.
+   <br>`cd microverse-builder`
+4. Create the apiKey.js file from apiKey.js-example and the API Key above.
+   <br>`cp apiKey.js-example apiKey.js # and edit apiKey.js`
+5. In the terminal run:
+   `npm i`
+and then
+   `npm start`
+6. Open browser at `localhost:9684` and enter a new world.
+7. Copy the URL shown in the browser tab and copy it into a new tab. Also, replace localhost with the IP address (probably something like 192.168.0.123) and open it from another device on the local network.
 
+## Discussion / Contributing
+Join the [Croquet Community Discord](https://discord.gg/9U9MKSbJXS) to talk about the Microverse Builder. We love to hear your feedback.
+
+Also follow us on [Twitter](https://twitter.com/croquetio) for important announcements.
 
 ## License
 Croquet Microverse IDE is governed by the [Croquet Developer License Agreement](https://croquet.io/terms.html)
