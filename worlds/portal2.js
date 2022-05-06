@@ -1,4 +1,4 @@
-// demoWorld2.js
+// tutorial2.js
 // Copyright 2021 by Croquet Corporation, Inc. All Rights Reserved.
 // https://croquet.io
 // info@croquet.io
@@ -10,12 +10,12 @@ export function init(Constants) {
 
     Constants.SystemBehaviorDirectory = "behaviors/croquet";
     Constants.SystemBehaviorModules = [
-        "menu.js", "elected.js", "propertySheet.js", "stickyNote.js"
+        "menu.js", "propertySheet.js", "stickyNote.js"
     ];
 
-    Constants.UserBehaviorDirectory = "behaviors/demoWorld";
+    Constants.UserBehaviorDirectory = "behaviors/default";
     Constants.UserBehaviorModules = [
-        "lights.js", "gridFloor.js", "joeTheBox.js"
+        "lights.js"
     ];
 
     const frameColor = 0x888888;
@@ -63,17 +63,6 @@ export function init(Constants) {
         },
         {
             card: {
-                name:"Joe the Box",
-                behaviorModules: ["JoeTheBox"],
-                layers: ["pointer"],
-                type: "object",
-                translation:[-4, 0.4, -10],
-                //rotation:[0, Math.pi/4, 0],
-                shadow: true,
-            }
-        },
-        {
-            card: {
                 name:"Imported Box",
                 type: "3d",
                 dataLocation: "./assets/3D/testcube_1m.glb.zip",
@@ -88,7 +77,7 @@ export function init(Constants) {
             card: {
                 name: "portal",
                 className: "PortalActor",
-                translation: [8, 0.4, -5],
+                translation: [8, 0, -5],
                 rotation: [0, -Math.PI / 2, 0],
                 type: "2d",
                 layers: ["pointer", "portal"],
