@@ -8,13 +8,24 @@ class DriveActor {
         }
         this.addEventListener("keyDown", "control");
         this.addEventListener("pointerDown", "nop");
-        // this.scriptSubscribe("scope", "newAngle", "newAngle");
+        // this.addEventListener("pointerDown", "ride");
+        // this.subscribe("scope", "newAngle", "newAngle");
     }
     run() {
         if (!this.running) {return;}
         this.future(20).run();
         this.rotateBy([0, -this.angle, 0]);
         this.forwardBy(-this.speed);
+        if (this.avatar) {
+            let t = this._translation;
+            this.avatar.translateTo([t[0], t[1] + 1.6, t[2]]);
+            this.avatar.rotateTo(this._rotation);
+        }
+    }
+    ride() {
+        let actors = this.queryCards();
+        let avatar = actors.find(o => o.layers.includes("avatar"));
+        this.avatar = avatar;
     }
     /*
     newAngle(angle) {
@@ -29,7 +40,7 @@ class DriveActor {
         this.rotateTo(q);
     }
     forwardBy(dist) {
-        let v = Worldcore.v3_rotate([dist, 0, 0], this.rotation)
+        let v = Worldcore.v3_rotate([dist, 0, 0], this.rotation);
         this.translateTo([
             this.translation[0] + v[0],
             this.translation[1] + v[1],

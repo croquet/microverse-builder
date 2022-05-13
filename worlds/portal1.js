@@ -9,7 +9,7 @@ export function init(Constants) {
 
     Constants.SystemBehaviorDirectory = "behaviors/croquet";
     Constants.SystemBehaviorModules = [
-        "menu.js", "elected.js", "propertySheet.js", "stickyNote.js"
+        "menu.js", "elected.js", "propertySheet.js", "stickyNote.js", "avatar.js"
     ];
 
     Constants.UserBehaviorDirectory = "behaviors/default";
@@ -188,7 +188,7 @@ export function init(Constants) {
                 depth: 0.05,
                 cornerRadius: 0.05,
                 multiuser: true,
-                targetURL: "?world=portal2&q=zz7wltu2pv#pw=YuPGUxzqQ3nU5eoglP9WhA",
+                portalURL: "?world=portal2",
             }
         },
         {

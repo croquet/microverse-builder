@@ -1,3 +1,7 @@
+// Copyright 2022 by Croquet Corporation, Inc. All Rights Reserved.
+// https://croquet.io
+// info@croquet.io
+
 /*
 
   This is a wrapper to call Rapier features. It is expected to be used
@@ -8,6 +12,7 @@
 
 class RapierActor {
     destroy() {
+        this.removeImpulseJoint();
         this.removeCollider();
         this.removeRigidBody();
     }
@@ -78,8 +83,8 @@ class RapierActor {
     createCollider(cd) {
         this.removeCollider();
         const physicsManager = this.service('RapierPhysicsManager');
-        this.$collider = physicsManager.world.createCollider(cd, this.rigidBodyHandle);
-        this.colliderHandle = this.$collider.handle;
+        let collider = physicsManager.world.createCollider(cd, this.rigidBodyHandle);
+        this.colliderHandle = collider.handle;
         return this.colliderHandle;
     }
 
@@ -89,6 +94,28 @@ class RapierActor {
         let world = physicsManager.world;
         world.removeCollider(world.getCollider(this.colliderHandle));
         delete this.colliderHandle;
+    }
+
+    createImpulseJoint(type, body1, body2, ...params) {
+        const physicsManager = this.service('RapierPhysicsManager');
+        let func = Worldcore.RAPIER.JointParams[type];
+
+        if (!func) {throw new Error("unkown joint types");}
+        let jointParams = func.call(Worldcore.RAPIER.JointParams, ...params);
+        let joint = physicsManager.world.createJoint(jointParams, body1.rigidBody, body2.rigidBody);
+        this.jointHandle = joint.handle;
+        return this.jointHandle;
+    }
+
+    removeImpulseJoint() {
+        if (this.jointHandle === undefined) return;
+        const physicsManager = this.service('RapierPhysicsManager');
+        let world = physicsManager.world;
+        let joint = world.getJoint(this.jointHandle);
+        if (joint) {
+            world.removeJoint(joint);
+        }
+        delete this.jointHandle;
     }
 }
 
