@@ -90,7 +90,7 @@ Many of files in the `assets` directory are used for the default demo worlds and
 
 ### Updates
 
-Croquet will continuously update this repository with new features and bug fixes. Most of files affected will be under the `lib` and `assets` directory but occasionally some files in the worlds, including `default.js`, will be modified. If you edit `default.js` in your clone, fetching upstream updates may cause conflicts. Making your world file under a different name and launching it with the URL option `?world=` can avoid conflicts.  However, the recommended approach is to merge our changes into your version of `default.js`.
+Croquet will continuously update this repository with new features and bug fixes. Most of the files affected will be under the `lib` and `assets` directory but occasionally some files in the worlds, including `default.js`, will be modified. If you edit `default.js` in your clone, fetching upstream updates may cause conflicts. Making your world file under a different name and launching it with the URL option `?world=` can avoid conflicts.  However, the recommended approach is to merge our changes into your version of `default.js`.
 
 ## Resources
 ---
