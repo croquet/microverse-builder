@@ -1,4 +1,4 @@
-// Copyright 2021 by Croquet Corporation, Inc. All Rights Reserved.
+// Copyright 2022 by Croquet Corporation, Inc. All Rights Reserved.
 // https://croquet.io
 // info@croquet.io
 
@@ -65,7 +65,7 @@ export function init(Constants) {
                 frameColor: frameColor,
                 width: 4,
                 height: 4,
-                depth: 0.001,
+                depth: 0.2,
                 cornerRadius: 0.05,
                 shadow: true,
                 multiuser: true,
