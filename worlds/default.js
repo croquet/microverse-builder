@@ -283,7 +283,7 @@ export function init(Constants) {
             card: {
                 name:"generator",
                 type: "object",
-                translation: [0, 0, 0],
+                translation: [0, -2, 0],
                 scale:[4, 4, 4],
                 behaviorModules: [],
                 layers: ["pointer"],
