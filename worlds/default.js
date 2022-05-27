@@ -281,10 +281,24 @@ export function init(Constants) {
         },
         {
             card: {
+                name:"generator",
+                translation: [-4, 2, -50],
+                type: "object",
+                scale:[4, 4, 4],
+                behaviorModules: [],
+                layers: ["pointer"],
+                multiuser: true,
+                color: 0xaaaaaa,
+            },
+            id: "generator",
+        },
+        {
+            card: {
                 name: "bitcointracker",
                 translation: [-4, cardHeight, -6],
                 rotation: [0, Math.PI / 2, 0],
                 scale: [0.75, 0.75, 0.75],
+                parent: "generator",
                 type: "2d",
                 textureType: "canvas",
                 textureWidth: 1024,
