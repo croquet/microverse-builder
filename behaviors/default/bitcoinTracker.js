@@ -160,7 +160,7 @@ class BitcoinTrackerPawn {
         ctx.fillStyle = color;
 
         ctx.font = "40px Arial";
-        ctx.fillText("BTC-USD", this.canvas.width - 40, 85);
+        ctx.fillText("KVA", this.canvas.width - 40, 85);
 
         ctx.textAlign = 'center';
         ctx.font = "90px Arial";
