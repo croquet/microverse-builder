@@ -164,7 +164,7 @@ class BitcoinTrackerPawn {
 
         ctx.textAlign = 'center';
         ctx.font = "90px Arial";
-        ctx.fillText(". " + amount.toFixed(0), this.canvas.width / 2, 100); //50+this.canvas.height/2);
+        ctx.fillText("  " + amount.toFixed(0), this.canvas.width / 2, 100); //50+this.canvas.height/2);
         this.texture.needsUpdate = true;
         this.sayDeck('setColor', color);
     }
