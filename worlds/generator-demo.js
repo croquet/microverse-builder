@@ -15,7 +15,7 @@ export function init(Constants) {
 
     Constants.UserBehaviorDirectory = "behaviors";
     Constants.UserBehaviorModules = [
-        "default/lights.js", "tutorial/gridFloor.js", "tutorial/joeTheBox.js", "default/bitcoinTracker.js",
+        "tutorial/lights.js", "tutorial/gridFloor.js", "tutorial/joeTheBox.js", "default/bitcoinTracker.js",
     ];
 
     const frameColor = 0x888888;
@@ -59,61 +59,24 @@ export function init(Constants) {
         },
         {
             card: {
-                name: "generator card",
-                translation: [10, -1.47, 0],
-                rotation: [0,0.7,0,0.7],
-                type: "3d",
-                dataLocation: "./assets/3D/PowerGen.glb",
-                modelType: "glb",
-                layers:["pointer"],
-            }
-        }, 
-        {
-            card: {
-                name: "bitcointracker",
-                translation: [9.175, -0.145, 1.075],
-                rotation: [0, -Math.PI / 2, 0],
-                scale: [0.75, 0.75, 0.75],
+                name: "portal",
+                className: "PortalActor",
+                translation: [-10, 0, -10],
+                rotation: [0, Math.PI / 4, 0],
                 type: "2d",
-                textureType: "canvas",
-                textureWidth: 1024,
-                textureHeight: 768,
-                width: 1,
-                height: 0.75,
+                layers: ["pointer", "portal"],
+                behaviorModules: ["Spin"],
+                color: 0xFF66CC,
                 frameColor: frameColor,
-                // color: 0xffffff,
+                width: 4,
+                height: 4,
                 depth: 0.05,
-                cornerRadius: 0.1,
-                behaviorModules: ["Elected", "BitcoinTracker"],
-            },
-            id: "main",
-        },
-        {
-            card: {
-                name:"kva logo",
-                translation: [-0.35, 0.30, 0.1],
-                scale: [0.25, 0.25, 0.25],
-                parent: "main",
-                type: "2d",
-                dataLocation: "./assets/SVG/kva-solid.svg",
-                depth: 0.05,
-                color: 0xffffff,
-                frameColor: frameColor,
-                behaviorModules: ["BitLogo"]
+                cornerRadius: 0.05,
+                multiuser: true,
+                portalURL: "?world=generator-demo-room",
             }
         },
-        {
-            card: {
-                name:"bar graph",
-                translation:[0, -0.3, 0.1],
-                color: 0xEEEEEE,
-                frameColor: frameColor,
-                type: "object",
-                height: 0.4,
-                parent: "main",
-                behaviorModules: ["BarGraph"],
-            }
-        },
+        
         
     ];
 }
