@@ -89,6 +89,12 @@ Any other values that the CardActor holds are stored in an object stored in the 
 
 This method creates a new card (a CardActor on the model side and a CardPawn on the view side), based on the `cardSpec`.
 
+### `queryCards(options?:{behaviorName?:string, methodName:string}, requestor?:Actor):Array<CardActor>
+
+This method queries all existing cards in the world. When options is not speficied, all card actors are returned as an array. If options and reequestor are specified, you can filter them based on the boolean-valued method specified by behaviorName and methodName on the requestor.
+
+If behaviorName is specified, a behavior method attached to requestor, specified by the behaviorName and methodName is invoked for each card. If only methodName is specified, the method from the base CardActor is invoked for each card. The method is expected to return a boolean value, and used to filter the list of cards to be returned.
+
 ### `destroy()`
 
 This method removes the card from the world. All `destroy()` method of installed pawn behaviors and actor behaviors are called before the CardActor is removed from the system.
@@ -126,6 +132,8 @@ This method updates some elements in the `_cardData` object. The current value a
 `type EventName = "pointerDown"|"pointerUp"|pointerMove"|"pointerTap"|"pointerLeave"|"pointerEnter"|"wheel"|"doubleDown"|"click"|"keyUp"|"keyDown"`
 
 This method adds a "listener" to be invoked when an event occurs on the card.  When `listener` is a function, it has to have a form of `this.mthName` where `mthName` is an existing method name of CardActor or the behavior itself. When listener is a string, it has to be the name of a method at CardActor or the behavior itself. The listener added by this Actor-side `addEventListener()` is invoked when any user in the world causes the corresponding user pointer or key event.
+
+The pointerTap event is generated when a pointerUp event occurs close in time (< 300ms) and space (< 1 0pixels) to the corresponding pointerDown event. Then first the pointerTap event is sent before the pointerUp.
 
 Calling this method with the same arguments removes the previous listener before adding the new one. This semantics ensures that dynamically-modified method will be used.
 
@@ -256,6 +264,11 @@ This method publishes a Croquet event in the scope of `this.actor._parent.id` if
 ### `listenDeck(message:string, listener:function|string)`
 
 This method subscribes a Croquet event in the scope of `this.actor._parent.id` if `this.actor._parent` is not undefined, or in `this.actor.id` if it is undefined. Note that `this.parent` is resolved at the first time it is called, and any change to `this.actor._parent` will not update the subscription.
+
+
+### `addUpdateRequest(array:Array<behaviorName, methodName>)`
+
+A pawn behavior can request a method callback when CardPawn's `update()` method is invoked. behaviorName and methodName will be "registered in the pawn, and for each `update()` call, the behavior method is invoked.
 
 ### `roundedCornerGeometry(width:number, height:number, depth:number, cornerRadius:number):Geometry`
 
