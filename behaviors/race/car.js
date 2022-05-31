@@ -34,7 +34,7 @@ class DriveActor {
         this.forwardBy(-this.speed);
         if (this.avatar) {
             let t = this._translation;
-            this.avatar._translation = [t[0], t[1] + 1.5, t[2] + 0.3];
+            this.avatar._translation = [t[0], t[1] + 1.4, t[2]];
             this.avatar._rotation = this._rotation;
             this.avatar.say("forceOnPosition");
         }
