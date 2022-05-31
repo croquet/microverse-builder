@@ -9,7 +9,7 @@ export function init(Constants) {
 
     Constants.SystemBehaviorDirectory = "behaviors/croquet";
     Constants.SystemBehaviorModules = [
-        "menu.js", "elected.js", "propertySheet.js", "stickyNote.js", "avatar.js"
+        "menu.js", "elected.js", "propertySheet.js", "stickyNote.js", "avatarEvents.js"
     ];
 
     Constants.UserBehaviorDirectory = "behaviors/default";
@@ -52,11 +52,10 @@ export function init(Constants) {
             card: {
                 name: "portal",
                 className: "PortalActor",
-                translation: [0, 0, -10],
-                rotation: [0, 0, 0],
+                translation: [0, 0, 0.5],
+                rotation: [0, Math.PI, 0],
                 type: "2d",
                 layers: ["pointer", "portal"],
-                behaviorModules: ["Spin"],
                 color: 0xFF66CC,
                 frameColor: frameColor,
                 width: 4,
@@ -69,5 +68,22 @@ export function init(Constants) {
                 sparkle: false,
             }
         },
+        {
+            card: {
+                translation: [0, -1.7, -10],
+                rotation: [0, 0, 0],
+                layers: ["pointer"],
+                name: "bunny",
+                dataLocation: "3gEXauiO9PWsrE8v7T5rxpkbyvkR-69K1L7xKuHVbmsIDxMTFxRdSEgBDgsCFEkSFEkEFQgWEgITSQ4ISBJIIAMxBR4LLhQmDDYEJT8DVCAfBhEeEDIsMD4-VUgOCEkEFQgWEgITSQoOBBUIEQIVFAJIK1UBAVAMKgQRCwAWDgZWNQxUPVFXACUSI1MAVy0QCBdWFTQIVhYyNBBXDEgDBhMGSDQ2XgsiNhIIIRcpESpSAwMQMCUQVAMREwE9BiYRMCkQV14PCRJTAVVWKCo",
+                dataScale: [0.02, 0.02, 0.02],
+                fileName: "/bunny-breakdance.zip",
+                modelType: "zip",
+                license: "CC-BY",
+                attribution: "'Bunny Breakdance' (https://skfb.ly/ouFFL) by pixelshoppe is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/)",
+                shadow: true,
+                singleSided: true,
+                type: "3d",
+            }
+        }
     ];
 }

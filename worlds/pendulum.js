@@ -9,7 +9,7 @@ export function init(Constants) {
 
     Constants.SystemBehaviorDirectory = "behaviors/croquet";
     Constants.SystemBehaviorModules = [
-        "rapier.js", "avatar.js"
+        "rapier.js", "avatarEvents.js"
     ];
 
     Constants.UserBehaviorDirectory = "behaviors/pendulum";
@@ -48,8 +48,22 @@ export function init(Constants) {
         },
         {
             card: {
+                name:"pendulum holder",
+                translation: [0, 6, -10],
+                type: "2d",
+                width: 1,
+                height: 1,
+                depth: 1,
+                layers: ["pointer"],
+                scale: [0.3, 0.3, 0.3],
+                color: 0xcccccc
+            },
+            id: "holder"
+        },
+        {
+            card: {
                 name:"pendulum",
-                translation: [0, 22, -20],
+                parent: "holder",
                 type: "object",
                 behaviorModules: ["Rapier", "Pendulum"],
                 layers: ["pointer"],
@@ -57,6 +71,5 @@ export function init(Constants) {
                 color: 0xaaaaaa,
             }
         },
-        
     ];
 }

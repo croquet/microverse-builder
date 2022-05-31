@@ -10,7 +10,7 @@ export function init(Constants) {
 
     Constants.SystemBehaviorDirectory = "behaviors/croquet";
     Constants.SystemBehaviorModules = [
-        "menu.js", "propertySheet.js", "stickyNote.js", "avatar.js"
+        "menu.js", "propertySheet.js", "stickyNote.js", "avatarEvents.js"
     ];
 
     Constants.UserBehaviorDirectory = "behaviors/default";
@@ -82,19 +82,19 @@ export function init(Constants) {
             card: {
                 name: "portal",
                 className: "PortalActor",
-                translation: [11.9, 0, -5],
-                rotation: [0, -Math.PI / 2, 0],
+                translation: [0, 0, 0.5],
+                rotation: [0, Math.PI, 0],
                 type: "2d",
                 layers: ["pointer", "portal"],
                 color: 0xFF66CC,
                 frameColor: frameColor,
-                width: 2,
+                width: 4,
                 height: 4,
                 depth: 0.2,
                 cornerRadius: 0.05,
                 multiuser: true,
                 portalURL: "?world=portal2",
-                sparkle: true,
+                sparkle: false,
             }
         },
     ];

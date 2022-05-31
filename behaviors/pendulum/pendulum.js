@@ -21,6 +21,7 @@ class PendulumActor {
                     modelType: "glb",
                     translation,
                     name,
+                    parent: this,
                     pendulumProto: true,
                     behaviorModules: ["Rapier", "PendulumLink"],
                     noSave: true,
@@ -30,6 +31,7 @@ class PendulumActor {
                     type: "object",
                     translation,
                     name,
+                    parent: this,
                     behaviorModules: ["Rapier", "PendulumLink"],
                     noSave: true,
                 });
@@ -57,6 +59,7 @@ class PendulumActor {
             let card = this.createCard({
                 type: "object",
                 name: `joint${i}`,
+                parent: this,
                 behaviorModules: ["Rapier"],
                 noSave: true,
             });
