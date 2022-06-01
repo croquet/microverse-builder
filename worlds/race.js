@@ -131,5 +131,33 @@ export function init(Constants) {
                 color: 0xff0000
             }
         },
+        {
+            card: {
+                name:"teleporteroneback",
+                type: "3d",
+                translation: [11, 375, -10],
+                teleportLocation: [0, 0, 0],
+                behaviorModules: ["Teleporter"],
+                layers: ["pointer"],
+                shadow: true,
+                myScope: "A",
+                multiuser: false,
+                color: 0x0000ff
+            }
+        },
+        {
+            card: {
+                name:"teleportertwoback",
+                type: "3d",
+                translation: [11, 375, 10],
+                teleportLocation: [0, 0, 0],
+                behaviorModules: ["Teleporter"],
+                layers: ["pointer"],
+                shadow: true,
+                myScope: "B",
+                multiuser: false,
+                color: 0xff0000
+            }
+        },
     ];
 }
