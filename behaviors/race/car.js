@@ -84,15 +84,24 @@ class DriveActor {
             this.avatar = undefined;
             this.riding = false;
         } else if (key.key === "Escape") {
-            this.translateTo(this._cardData.translation);
-            this.rotateTo(this._cardData.dataRotation);
+            this.translateTo(this._cardData.startPoint);
+            this.rotateTo(Worldcore.q_identity());
             this.speed = 0.0;
             this.accel = 0.0;
             this.angle = 0.0;
-            this.avatar = undefined;
-            this.riding = false;
         }
     }
+
+    // getOff() {
+    //     if (this.avatar) {
+    //         let t = this._translation;
+    //         this.avatar._translation = [t[0], t[1] + 1.4, t[2]];
+    //         this.avatar._rotation = this._rotation;
+    //         this.avatar.say("forceOnPosition");
+    //     }
+    //     this.avatar = undefined;
+    //     this.riding = false;
+    // }
 
     endControl(key){
         if (key.key === "ArrowRight") { // Stopping spin on release
