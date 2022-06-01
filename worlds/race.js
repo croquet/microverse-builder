@@ -14,7 +14,7 @@ export function init(Constants) {
 
     Constants.UserBehaviorDirectory = "behaviors/race";
     Constants.UserBehaviorModules = [
-        "car.js", "lights.js", "controller.js", "cascade.js"
+        "car.js", "lights.js", "controller.js", "cascade.js", "teleporter.js"
     ];
 
     Constants.UseRapier = true;
@@ -103,57 +103,33 @@ export function init(Constants) {
                 color: 0xff0000
             }
         },
-        // {
-        //     card: {
-        //         name:"block1",
-        //         type: "3d",
-        //         translation: [10, 10, -15],
-        //         behaviorModules: ["Rapier", "Cascade"],
-        //         layers: ["walk"],
-        //         rapierSize: [2, 2, 2],
-        //         rapierShape: "cuboid",
-        //         rapierType: "dynamic",
-        //         color: 0x000077,
-        //     }
-        // },
-        // {
-        //     card: {
-        //         name:"block2",
-        //         type: "3d",
-        //         translation: [10, -0.7, -15],
-        //         behaviorModules: ["Rapier", "Cascade"],
-        //         layers: ["walk"],
-        //         rapierSize: [2, 2, 2],
-        //         rapierShape: "cuboid",
-        //         rapierType: "static",
-        //         color: 0x007700,
-        //     }
-        // },
-        // {
-        //     card: {
-        //         name:"block3",
-        //         type: "3d",
-        //         translation: [5, 0, -15],
-        //         behaviorModules: ["Rapier", "Cascade", "Drive"],
-        //         layers: ["walk", "pointer"],
-        //         rapierSize: [2, 1, 2],
-        //         rapierShape: "cuboid",
-        //         rapierType: "dynamic",
-        //         color: 0x770000,
-        //     }
-        // },
-        // {
-        //     card: {
-        //         name:"block4",
-        //         type: "3d",
-        //         translation: [5, 2, -20],
-        //         behaviorModules: ["Rapier", "Cascade"],
-        //         layers: ["walk"],
-        //         rapierSize: [2, 2, 2],
-        //         rapierShape: "cuboid",
-        //         rapierType: "dynamic",
-        //         color: 0x000077,
-        //     }
-        // },
+        {
+            card: {
+                name:"teleporterone",
+                type: "3d",
+                translation: [-10, 0.4, -10],
+                teleportLocation: [0, 380, -10],
+                behaviorModules: ["Teleporter"],
+                layers: ["pointer"],
+                shadow: true,
+                myScope: "A",
+                multiuser: false,
+                color: 0x0000ff
+            }
+        },
+        {
+            card: {
+                name:"teleportertwo",
+                type: "3d",
+                translation: [15, 0.4, -10],
+                teleportLocation: [0, 380, 10],
+                behaviorModules: ["Teleporter"],
+                layers: ["pointer"],
+                shadow: true,
+                myScope: "B",
+                multiuser: false,
+                color: 0xff0000
+            }
+        },
     ];
 }
