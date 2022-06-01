@@ -75,10 +75,6 @@ class ControllerPawn {
 
     // Click Down
     onPointerDown(p3d) {
-        let cars = this.actor.queryCards();
-        let car = cars.find((c) => c.name === this._cardData.name);
-        let carPawn = Worldcore.GetPawn(car.id);
-        avatar.pointerCapture(carPawn);
         this.moveBuffer = [];
         this.say("stopRotating"); // on click
         this._startDrag = p3d.xy; // xy values (tuple)
@@ -110,7 +106,6 @@ class ControllerPawn {
     onPointerUp(p3d) {
         let avatar = Worldcore.GetPawn(p3d.avatarId);
         avatar.removeFirstResponder("pointerMove", {}, this);
-        avatar.pointerCapture(null);
         this._startDrag = null;
         this._baseRotation = null;
         // slowdown

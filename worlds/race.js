@@ -81,7 +81,7 @@ export function init(Constants) {
             card: {
                 name:"controllerone",
                 type: "3d",
-                translation: [-5, 0.4, -10],
+                translation: [10.2, 375, -11.7],
                 behaviorModules: ["Controller"],
                 layers: ["pointer"],
                 shadow: true,
@@ -94,7 +94,7 @@ export function init(Constants) {
             card: {
                 name:"controllertwo",
                 type: "3d",
-                translation: [10, 0.4, -10],
+                translation: [10.2, 375, 8.3],
                 behaviorModules: ["Controller"],
                 layers: ["pointer"],
                 shadow: true,
@@ -107,8 +107,8 @@ export function init(Constants) {
             card: {
                 name:"teleporterone",
                 type: "3d",
-                translation: [-10, 0.4, -10],
-                teleportLocation: [0, 380, -10],
+                translation: [-5, 0.4, -10],
+                teleportLocation: [10, 380, -10],
                 behaviorModules: ["Teleporter"],
                 layers: ["pointer"],
                 shadow: true,
@@ -121,8 +121,8 @@ export function init(Constants) {
             card: {
                 name:"teleportertwo",
                 type: "3d",
-                translation: [15, 0.4, -10],
-                teleportLocation: [0, 380, 10],
+                translation: [10, 0.4, -10],
+                teleportLocation: [10, 380, 10],
                 behaviorModules: ["Teleporter"],
                 layers: ["pointer"],
                 shadow: true,
