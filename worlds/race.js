@@ -43,7 +43,7 @@ export function init(Constants) {
                 layers: ["light"],
                 type: "lighting",
                 behaviorModules: ["Light"],
-                dataLocation: "./assets/sky/night_sky_4k.jpg",
+                dataLocation: "./assets/sky/abandoned_parking_4k.jpg",
                 dataType: "jpg",
             }
         },
