@@ -10,12 +10,15 @@ class TeleporterActor {
     }
 
     // Teleport Avatar To Specified Location
-    teleportAvatar() {
+    teleportAvatar(playerId) {
         let actors = this.queryCards();
-        let avatar = actors.find(o => o.layers.includes("avatar"));
+        let avatar = actors.find(o => o.playerId === playerId);
         this.avatar = avatar;
-        let quaternion = Worldcore.q_euler(...[0, -(Math.PI / 2), -(Math.PI / 2)]);
-        this.avatar.goTo(this._cardData.teleportLocation, quaternion, false);
+        this.avatar.goTo(this._cardData.teleportLocation, Worldcore.q_euler(0, -(Math.PI / 2), 0), false);
+        this.avatar.lookOffset = [0, 0, 0];
+        this.avatar.lookPitch = this._cardData.teleportPitch;
+        this.avatar.lookYaw = 0;
+        this.avatar.say("setLookAngles", {pitch: this._cardData.teleportPitch, yaw: 0, lookOffset: [0, 0, 0]})
     }
 
 }
@@ -36,14 +39,14 @@ class TeleporterPawn {
 
     // Click Down (Teleport To Specified Location)
     onPointerDown() {
-        this.say("teleportAvatar");
+        this.say("teleportAvatar", this.viewId);
     }
 
     // Delete Listeners
     destroy() {
         this.removeEventListener("pointerDown", "onPointerDown");
     }
-    
+
 }
 
 export default {
