@@ -23,7 +23,7 @@ export function init(Constants) {
         {
             card: {
                 name:"world model",
-                dataScale:[1, 1, 1],
+                dataScale:[0.6, 0.6, 0.6],
                 translation:[0, -1.8, 0],
                 layers: ["walk"],
                 type: "3d",
@@ -81,7 +81,7 @@ export function init(Constants) {
             card: {
                 name:"controllerone",
                 type: "3d",
-                translation: [10.2, 375, -12],
+                translation: [10.2, 195, -12],
                 behaviorModules: ["Controller"],
                 layers: ["pointer"],
                 shadow: true,
@@ -94,7 +94,7 @@ export function init(Constants) {
             card: {
                 name:"controllertwo",
                 type: "3d",
-                translation: [10.2, 375, 7.9],
+                translation: [10.2, 195, 7.9],
                 behaviorModules: ["Controller"],
                 layers: ["pointer"],
                 shadow: true,
@@ -108,7 +108,7 @@ export function init(Constants) {
                 name:"teleporterone",
                 type: "3d",
                 translation: [-5, 0.4, -10],
-                teleportLocation: [10, 380, -10],
+                teleportLocation: [10, 200, -10],
                 teleportPitch: -(Math.PI / 2),
                 behaviorModules: ["Teleporter"],
                 layers: ["pointer"],
@@ -123,7 +123,7 @@ export function init(Constants) {
                 name:"teleportertwo",
                 type: "3d",
                 translation: [10, 0.4, -10],
-                teleportLocation: [10, 380, 10],
+                teleportLocation: [10, 200, 10],
                 teleportPitch: -(Math.PI / 2),
                 behaviorModules: ["Teleporter"],
                 layers: ["pointer"],
@@ -137,7 +137,7 @@ export function init(Constants) {
             card: {
                 name:"teleporteroneback",
                 type: "3d",
-                translation: [11.8, 375, -7.2],
+                translation: [11.8, 195, -7.2],
                 teleportLocation: [0, 0, 0],
                 teleportPitch: 0,
                 behaviorModules: ["Teleporter"],
@@ -152,7 +152,7 @@ export function init(Constants) {
             card: {
                 name:"teleportertwoback",
                 type: "3d",
-                translation: [11.8, 375, 12.6],
+                translation: [11.8, 195, 12.6],
                 teleportLocation: [0, 0, 0],
                 teleportPitch: 0,
                 behaviorModules: ["Teleporter"],

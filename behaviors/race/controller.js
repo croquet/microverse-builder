@@ -6,18 +6,21 @@ class ControllerActor {
 
     // Listeners
     setup() {
-        this.listen("startRotating", "startRotating");
+        // this.listen("startRotating", "startRotating");
         this.listen("stopRotating", "stopRotating");
         this.listen("newAngle", "newAngle");
         this.listen("newSpeed", "newSpeed");
+        this.listen("slowDown", "slowDown");
     }
 
+    // Start Rotation: (Controller)
     // startRotating(rotation) {
     //     this.isSpinning = true;
     //     this.qSpin = Worldcore.q_euler(0, rotation, 0);
     //     this.doSpin();
     // }
 
+    // Start Spinning: (Controller)
     // doSpin() {
     //     if(this.isSpinning) {
     //         this.setRotation(Worldcore.q_multiply(this._rotation, this.qSpin));
@@ -25,7 +28,7 @@ class ControllerActor {
     //     }
     // }
 
-    // Stop All Rotation (Dir)
+    // Stop All Rotation (Dir, Controller)
     stopRotating() {
         this.isRotating = false;
     }
@@ -40,12 +43,19 @@ class ControllerActor {
         this.publish(this._cardData.myScope, "newSpeed", newSpeed);
     }
 
+    // Publish Slow Down (On Pointer Up)
+    slowDown(runSlowDown) {
+        this.publish(this._cardData.myScope, "slowDown", runSlowDown);
+    }
+
     // Deletion
     destroy() {
-        delete this.isSpinning;
-        this.unsubscribe(this.id, "startRotating");
+        // delete this.isSpinning;
+        // this.unsubscribe(this.id, "startRotating");
         this.unsubscribe(this.id, "stopRotating");
         this.unsubscribe(this.id, "newAngle");
+        this.unsubscribe(this.id, "newSpeed");
+        this.unsubscribe(this.id, "slowDown");
     }
 
 }
@@ -73,18 +83,18 @@ class ControllerPawn {
     //     return (Math.atan2(origin[2] - xyz[2], xyz[0] - origin[0]) + Math.PI * 2) % (Math.PI * 2);
     // }
 
-    // Click Down
+    // Click Down (Pointer Down)
     onPointerDown(p3d) {
         this.moveBuffer = [];
         this.say("stopRotating"); // on click
+        this.say("slowDown", false);
         this._startDrag = p3d.xy; // xy values (tuple)
         this._baseRotation = this._rotation;
         let avatar = Worldcore.GetPawn(p3d.avatarId);
         avatar.addFirstResponder("pointerMove", {}, this);
-        // if pointer hasnt moved for ? then stop rotating vehicle
     }
 
-    // Move Click
+    // Move Click (Pointer Move)
     onPointerMove(p3d) {
         this.moveBuffer.push(p3d.xy);
         this.deltaAngle = (p3d.xy[0] - this._startDrag[0]) / 2 / 180 * Math.PI; // xz rotation
@@ -102,19 +112,21 @@ class ControllerPawn {
         this.moveBuffer.shift();
     }
 
-    // Unclick
+    // Keeps Controller Moving on Pointer Up:
+    // if (this.moveBuffer.length < 3) { return; }
+    //     if (Math.abs(this.deltaAngle) > 0.01) {
+    //         let a = this.deltaAngle;
+    //         a = Math.min(Math.max(-0.1, a), 0.1);
+    //         this.say("startSpinning", a);
+    //     }
+        
+    // Unclick (Pointer Up)
     onPointerUp(p3d) {
         let avatar = Worldcore.GetPawn(p3d.avatarId);
         avatar.removeFirstResponder("pointerMove", {}, this);
         this._startDrag = null;
         this._baseRotation = null;
-        // slowdown
-        // if (this.moveBuffer.length < 3) {return;}
-        // if(Math.abs(this.deltaAngle) > 0.01) {
-        //     let a = this.deltaAngle;
-        //     a = Math.min(Math.max(-0.1, a), 0.1);
-        //     this.say("startSpinning", a);
-        // }
+        this.say("slowDown", true);
     }
 
     // Delete Listeners

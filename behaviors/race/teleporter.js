@@ -25,6 +25,7 @@ class TeleporterActor {
 
 class TeleporterPawn {
     
+    // Teleporter Shape, Listener
     setup() {
         if (this.obj) {
             this.shape.remove(this.obj);
