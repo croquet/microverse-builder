@@ -87,7 +87,7 @@ class FlightTrackerPawn {
 
     processFlight() {
         let len = this.rawPlanes.length;
-        let nextTime = 100;
+        let nextTime = 250;
         if (len === 0) {
             if (!this.gettingFlight) this.getFlight();
         } else {
@@ -99,9 +99,10 @@ class FlightTrackerPawn {
             if (this.sendex > len) {
                 this.rawPlanes = [];
                 this.say("updateFlight");
-                nextTime = 5000;
+                nextTime = 10 * 60 * 1000;
             }
         }
+        // console.log("flight tracker nextTime", nextTime);
         this.future(nextTime).processFlight();
     }
 
@@ -130,6 +131,7 @@ class FlightTrackerPawn {
         if (!data || data.to === this.viewId) {
             console.log("flight tracker elected");
             this.rawPlanes = [];
+            this.nextTime = 1000;
             this.processFlight();
         }
     }
