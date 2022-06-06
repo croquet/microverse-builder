@@ -14,11 +14,14 @@ class TeleporterActor {
         let actors = this.queryCards();
         let avatar = actors.find(o => o.playerId === playerId);
         this.avatar = avatar;
-        this.avatar.goTo(this._cardData.teleportLocation, Worldcore.q_euler(0, -(Math.PI / 2), 0), false);
-        this.avatar.lookOffset = [0, 0, 0];
-        this.avatar.lookPitch = this._cardData.teleportPitch;
-        this.avatar.lookYaw = 0;
-        this.avatar.say("setLookAngles", {pitch: this._cardData.teleportPitch, yaw: 0, lookOffset: [0, 0, 0]})
+
+        this.avatar.goTo(this._cardData.teleportLocation, Worldcore.q_euler(0, this._cardData.teleportYaw, 0), false); // Yaw Control, Avatar Location
+
+        this.avatar.lookOffset = [0, 0, 0]; // Controls Offset
+        this.avatar.lookPitch = this._cardData.teleportPitch; // Controls Avatar Pitch (Camera Angle Up, Down)
+        this.avatar.lookYaw = 0; // Placeholder
+        
+        this.avatar.say("setLookAngles", {pitch: this._cardData.teleportPitch, yaw: 0, lookOffset: [0, 0, 0]}) // Controls Pitch, Offset
     }
 
 }
