@@ -22,6 +22,14 @@ export function init(Constants) {
     Constants.DefaultCards = [
         {
             card: {
+                name: "entry",
+                translation: [-3, 0, 4],
+                rotation: [0, -0.2797746092750467, 0, 0.960065710253728],
+                spawn: "default",
+            }
+        },
+       {
+            card: {
                 name:"world model",
                 dataScale:[1,1,1],
                 translation:[22,-1.7,-20],
@@ -50,10 +58,10 @@ export function init(Constants) {
         },
         {
             card: {
-                name: "portal",
+                name: "portal-to-one",
                 className: "PortalActor",
-                translation: [0, 0, 0.5],
-                rotation: [0, Math.PI, 0],
+                translation: [5, 0, -5],
+                rotation: [0, Math.PI / 2, 0],
                 type: "2d",
                 layers: ["pointer", "portal"],
                 color: 0xFF66CC,
@@ -69,7 +77,7 @@ export function init(Constants) {
         },
         {
             card: {
-                translation: [0, -1.7, -10],
+                translation: [0, -1.7, -5],
                 rotation: [0, 0, 0],
                 layers: ["pointer"],
                 name: "bunny",

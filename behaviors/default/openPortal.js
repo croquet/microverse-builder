@@ -19,17 +19,17 @@ class OpenRefineryPortalActor {
 
         this.createCard({
             translation: [-12, -0.4, -10.2],
-            rotation: [0, 1.5707963267948966, 0],
+            rotation: [0, -1.5707963267948966, 0],
             layers: ["pointer", "portal"],
             className: "PortalActor",
             color: 16737996,
             cornerRadius: 0.05,
             depth: 0.05,
             frameColor: 8947848,
-            height: 2.4,
             portalURL: "?world=refinery",
             type: "2d",
             width: 1.8,
+            height: 2.4,
         });
 
         this.say("portalChanged");
