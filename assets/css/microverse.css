@@ -18,6 +18,30 @@ body {
     height: 100%;
 }
 
+body.tilt {
+    perspective: 2000px;
+    perspective-origin: 50% 50%;
+    background: repeating-conic-gradient(#eee 0% 25%, #fff 0% 50%) 50% / 20px 20px;
+}
+
+iframe {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    border: none;
+    transition: transform 0.5s ease-in-out;
+}
+
+body.tilt>iframe {
+    --tilt-z: 0px;
+    transform: rotateX(80deg) translate3d(0px, -400px, var(--tilt-z));
+    border: #000 solid;
+    border-width: 20px 4px 10px 4px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
 #hud {
     display: none;
 }
@@ -159,6 +183,16 @@ body {
 
 #editModeBttn[pressed="false"] {
     background-color: #d3d3d380;
+}
+
+#ghostSlider {
+    z-index: 200;
+    position: fixed;
+    width: 100px;
+    margin-left: -50px;
+    left: 50%;
+    top: 20px;
+    display: none;
 }
 
 .no-pointer-events {
