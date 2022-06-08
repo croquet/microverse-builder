@@ -11,6 +11,7 @@ class ControllerActor {
         this.listen("newAngle", "newAngle");
         this.listen("newSpeed", "newSpeed");
         this.listen("slowDown", "slowDown");
+        this.subscribe(this._cardData.myScope, "newTranslation", "newTranslation");
     }
 
     // Start Rotation: (Controller)
@@ -46,6 +47,10 @@ class ControllerActor {
     // Publish Slow Down (On Pointer Up)
     slowDown(runSlowDown) {
         this.publish(this._cardData.myScope, "slowDown", runSlowDown);
+    }
+
+    newTranslation(translation) {
+        this.translateTo(translation);
     }
 
     // Deletion

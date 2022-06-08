@@ -14,7 +14,7 @@ export function init(Constants) {
 
     Constants.UserBehaviorDirectory = "behaviors/race";
     Constants.UserBehaviorModules = [
-        "car.js", "lights.js", "controller.js", "cascade.js", "teleporter.js"
+        "car.js", "lights.js", "controller.js", "teleporter.js", "grass.js", "cascade.js"
     ];
 
     Constants.UseRapier = true;
@@ -22,12 +22,12 @@ export function init(Constants) {
     Constants.DefaultCards = [
         {
             card: {
-                name:"world model",
-                dataScale:[18, 18, 18], // dataScale:[0.6, 0.6, 0.6]
-                translation:[-12.2, -22.8, -14.2], // translation:[0, -1.8, 0],
+                name: "track model",
+                dataScale: [18, 18, 18],
+                translation: [1.6, -3.95, 8.6], // translation: [-12.2, -22.8, -14.2] (X = -10.6, Z = -5.6)
                 layers: ["walk"],
                 type: "3d",
-                dataLocation: "./assets/3D/tsukuba2racetrackwide.glb.zip",
+                dataLocation: "./assets/3D/tsukuba2racetrack.glb.zip",
                 singleSided: true,
                 shadow: true,
                 fullBright: true,
@@ -38,6 +38,20 @@ export function init(Constants) {
 
             }
         },
+        // {
+        //     card: {
+        //         name:"floor model",
+        //         translation:[0, -1.8, 0],
+        //         layers: ["walk"],
+        //         type: "object",
+        //         behaviorModules: ["GridFloor"],
+        //         shadow: true,
+        //         fullBright: true
+        //     }
+        // },
+
+        // Light
+
         {
             card: {
                 name: "light",
@@ -48,6 +62,9 @@ export function init(Constants) {
                 dataType: "jpg",
             }
         },
+
+        // Cars
+
         {
             card: {
                 name:"racecarone",
@@ -56,11 +73,11 @@ export function init(Constants) {
                 startPoint: [-58.5, -1.672, 24],
                 layers: ["pointer"],
                 type: "3d",
-                multiuser: true,
+                multiuser: false,
                 dataLocation: "./assets/3D/porscheBlue.glb.zip",
                 behaviorModules: ["Rapier", "Drive"], 
                 myScope: "A",
-                color: 0x0000ff
+                color: 0x1341a4
             }
         },
         {
@@ -71,117 +88,180 @@ export function init(Constants) {
                 startPoint: [-55, -1.672, 30],
                 layers: ["pointer"],
                 type: "3d",
-                multiuser: true,
+                multiuser: false,
                 dataLocation: "./assets/3D/porscheRed.glb.zip",
                 behaviorModules: ["Rapier", "Drive"],
                 myScope: "B",
-                color: 0xff0000
+                color: 0x76100d
             }
         },
-        // {
-        //     card: {
-        //         name:"racecarthree",
-        //         dataRotation: [0, -Math.PI / 2, 0],
-        //         translation: [-58.5, -1.672, 30],
-        //         startPoint: [5, -1.672, -10],
-        //         layers: ["pointer"],
-        //         type: "3d",
-        //         multiuser: true,
-        //         dataLocation: "./assets/3D/porscheRed.glb.zip",
-        //         behaviorModules: ["Rapier", "Drive"],
-        //         myScope: "C",
-        //         color: 0xff0000
-        //     }
-        // },
+        {
+            card: {
+                name:"racecarthree",
+                dataRotation: [0, -Math.PI / 2, 0],
+                translation: [-58.5, -1.672, 36],
+                startPoint: [-58.5, -1.672, 36],
+                layers: ["pointer"],
+                type: "3d",
+                multiuser: false,
+                dataLocation: "./assets/3D/porscheYellow.glb.zip",
+                behaviorModules: ["Rapier", "Drive"],
+                myScope: "C",
+                color: 0x90610e
+            }
+        },
+        {
+            card: {
+                name:"racecarfour",
+                dataRotation: [0, -Math.PI / 2, 0],
+                translation: [-55, -1.672, 42],
+                startPoint: [-55, -1.672, 42],
+                layers: ["pointer"],
+                type: "3d",
+                multiuser: false,
+                dataLocation: "./assets/3D/porscheGreen.glb.zip",
+                behaviorModules: ["Rapier", "Drive"],
+                myScope: "D",
+                color: 0x287419
+            }
+        },
+
+        // Controllers
+
         {
             card: {
                 name:"controllerone",
                 type: "3d",
-                translation: [0, 115, -6.9], // translation: [10.2, 195, -12],
+                translation: [0, -5, 0], // Default Pos
                 behaviorModules: ["Controller"],
                 layers: ["pointer"],
                 shadow: true,
                 myScope: "A",
                 multiuser: false,
-                color: 0x0000ff
+                color: 0x1341a4
             }
         },
         {
             card: {
                 name:"controllertwo",
                 type: "3d",
-                translation: [0, 115, 2.8], // translation: [10.2, 195, 7.9],
+                translation: [0, -5, 0], // Default Pos
                 behaviorModules: ["Controller"],
                 layers: ["pointer"],
                 shadow: true,
                 myScope: "B",
                 multiuser: false,
-                color: 0xff0000
+                color: 0x76100d
             }
         },
         {
             card: {
+                name:"controllerthree",
+                type: "3d",
+                translation: [0, -5, 0], // Default Pos
+                behaviorModules: ["Controller"],
+                layers: ["pointer"],
+                shadow: true,
+                myScope: "C",
+                multiuser: false,
+                color: 0x90610e
+            }
+        },
+        {
+            card: {
+                name:"controllerfour",
+                type: "3d",
+                translation: [0, -5, 0], // Default Pos
+                behaviorModules: ["Controller"],
+                layers: ["pointer"],
+                shadow: true,
+                myScope: "D",
+                multiuser: false,
+                color: 0x287419
+            }
+        },
+
+        // Teleporters
+
+        {
+            card: {
                 name:"teleporterone",
                 type: "3d",
-                translation: [-5, 0.4, -10],
-                teleportLocation: [0, 120, -5],
-                teleportPitch: -(Math.PI / 2),
-                teleportYaw: -(Math.PI / 2),
+                translation: [-48, -0.4, 24],
+                teleportLocationC: [70, 100, 0], // teleportLocationC: [70, 100, -12],
+                teleportPitchC: -(0.36 * Math.PI),
+                teleportYawC: (Math.PI / 2),
+                teleportLocationP: [0, 160, 4], // teleportLocationP: [0, 160, -8],
+                teleportPitchP: -(Math.PI / 2),
+                teleportYawP: (Math.PI),
                 behaviorModules: ["Teleporter"],
                 layers: ["pointer"],
                 shadow: true,
                 myScope: "A",
                 multiuser: false,
-                color: 0x0000ff
+                color: 0x1341a4
             }
         },
         {
             card: {
                 name:"teleportertwo",
                 type: "3d",
-                translation: [10, 0.4, -10],
-                teleportLocation: [0, 120, 5],
-                teleportPitch: -(Math.PI / 2),
-                teleportYaw: -(Math.PI / 2),
+                translation: [-48, -0.4, 30],
+                teleportLocationC: [70, 100, 8], // teleportLocationC: [70, 100, -4],
+                teleportPitchC: -(0.36 * Math.PI),
+                teleportYawC: (Math.PI / 2),
+                teleportLocationP: [0, 160, 9], // teleportLocationP: [0, 160, -3],
+                teleportPitchP: -(Math.PI / 2),
+                teleportYawP: (Math.PI),
                 behaviorModules: ["Teleporter"],
                 layers: ["pointer"],
                 shadow: true,
                 myScope: "B",
                 multiuser: false,
-                color: 0xff0000
+                color: 0x76100d
             }
         },
         {
             card: {
-                name:"teleporteroneback",
+                name:"teleporterthree",
                 type: "3d",
-                translation: [1.8, 115, -2.2], // translation: [11.8, 115, -7.2],
-                teleportLocation: [0, 0, 0],
-                teleportPitch: 0,
-                teleportYaw: -(Math.PI / 2),
+                translation: [-48, -0.4, 36],
+                teleportLocationC: [70, 100, 16], // teleportLocationC: [70, 100, 4],
+                teleportPitchC: -(0.36 * Math.PI),
+                teleportYawC: (Math.PI / 2),
+                teleportLocationP: [0, 160, 15], // teleportLocationP: [0, 160, 3],
+                teleportPitchP: -(Math.PI / 2),
+                teleportYawP: (Math.PI),
                 behaviorModules: ["Teleporter"],
                 layers: ["pointer"],
                 shadow: true,
-                myScope: "A",
+                myScope: "C",
                 multiuser: false,
-                color: 0x0000ff
+                color: 0x90610e
             }
         },
         {
             card: {
-                name:"teleportertwoback",
+                name:"teleporterfour",
                 type: "3d",
-                translation: [1.8, 115, 7.4], // translation: [11.8, 195, 12.6],
-                teleportLocation: [0, 0, 0],
-                teleportPitch: 0,
-                teleportYaw: -(Math.PI / 2),
+                translation: [-48, -0.4, 42],
+                teleportLocationC: [70, 100, 24], // teleportLocationC: [70, 100, 12],
+                teleportPitchC: -(0.36 * Math.PI),
+                teleportYawC: (Math.PI / 2),
+                teleportLocationP: [0, 160, 20], // teleportLocationP: [0, 160, 8],
+                teleportPitchP: -(Math.PI / 2),
+                teleportYawP: (Math.PI),
                 behaviorModules: ["Teleporter"],
                 layers: ["pointer"],
                 shadow: true,
-                myScope: "B",
+                myScope: "D",
                 multiuser: false,
-                color: 0xff0000
+                color: 0x287419
             }
         },
+
+        // Note: Since a returner completes the same task 
+        // as the home button, it is obsoleted.
+ 
     ];
 }
