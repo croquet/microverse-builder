@@ -21,8 +21,7 @@ class TeleporterActor {
         let actors = this.queryCards();
         let avatar = actors.find(o => o.playerId === playerId);
         this.avatar = avatar;
-        if (window.innerWidth < 950 || window.innerHeight < 750) { // Phone
-            console.log(this._cardData.teleportYawP);
+        if (window.innerWidth / window.innerHeight < 1.67) { // Phone
             this.avatar.goTo(this._cardData.teleportLocationP, Worldcore.q_euler(0, this._cardData.teleportYawP, 0), false); // Yaw Control, Avatar Location
             this.avatar.say("setLookAngles", {pitch: this._cardData.teleportPitchP, yaw: 0, lookOffset: [0, 0, 0]}) // Controls Pitch, Offset
         } else { // Computer
