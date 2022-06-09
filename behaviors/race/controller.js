@@ -12,6 +12,7 @@ class ControllerActor {
         this.listen("newSpeed", "newSpeed");
         this.listen("slowDown", "slowDown");
         this.subscribe(this._cardData.myScope, "newTranslation", "newTranslation");
+        this.subscribe(this._cardData.myScope, "newAvatar", "newAvatar");
     }
 
     // Start Rotation: (Controller)
@@ -49,8 +50,14 @@ class ControllerActor {
         this.publish(this._cardData.myScope, "slowDown", runSlowDown);
     }
 
+    // Translate Controller
     newTranslation(translation) {
         this.translateTo(translation);
+    }
+
+    // New User Controlling (PlayerId)
+    newAvatar(playerId) {
+        this.avatar = playerId;
     }
 
     // Deletion
@@ -90,26 +97,29 @@ class ControllerPawn {
 
     // Click Down (Pointer Down)
     onPointerDown(p3d) {
-        this.moveBuffer = [];
-        this.say("stopRotating"); // on click
-        this.say("slowDown", false);
-        this._startDrag = p3d.xy; // xy values (tuple)
-        this._baseRotation = this._rotation;
         let avatar = Worldcore.GetPawn(p3d.avatarId);
-        avatar.addFirstResponder("pointerMove", {}, this);
+        if (this.actor.avatar === avatar.actor.playerId) {
+            this.moveBuffer = [];
+            this.say("stopRotating"); // on click
+            this.say("slowDown", false);
+            this._startDrag = p3d.xy; // xy values (tuple)
+            this._baseRotation = this._rotation;
+            avatar.addFirstResponder("pointerMove", {}, this);
+        }
     }
 
     // Move Click (Pointer Move)
     onPointerMove(p3d) {
-        this.moveBuffer.push(p3d.xy);
-        this.deltaAngle = (p3d.xy[0] - this._startDrag[0]) / 2 / 180 * Math.PI; // xz rotation
-        let deltaAnglexy = (p3d.xy[1] - this._startDrag[1]) / 2 / 180 * Math.PI; // xy rotation
-        let newRot = Worldcore.q_multiply(this._baseRotation, Worldcore.q_euler(deltaAnglexy, this.deltaAngle, 0));
-        this.rotateTo(newRot); // New rotation call
-        this.say("newAngle", this.deltaAngle);
-        this.say("newSpeed", -deltaAnglexy);
-        if (this.moveBuffer.length >= 3) {
-            setTimeout(() => this.shiftMoveBuffer(), 100);
+        let avatar = Worldcore.GetPawn(p3d.avatarId);
+        if (this.actor.avatar === avatar.actor.playerId) {
+            this.moveBuffer.push(p3d.xy);
+            this.deltaAngle = (p3d.xy[0] - this._startDrag[0]) / 2 / 180 * Math.PI; // xz rotation
+            let deltaAnglexy = (p3d.xy[1] - this._startDrag[1]) / 2 / 180 * Math.PI; // xy rotation
+            let newRot = Worldcore.q_multiply(this._baseRotation, Worldcore.q_euler(deltaAnglexy, this.deltaAngle, 0));
+            this.rotateTo(newRot); // New rotation call
+            this.say("newAngle", this.deltaAngle);
+            this.say("newSpeed", -deltaAnglexy);
+            if (this.moveBuffer.length >= 3) { setTimeout(() => this.shiftMoveBuffer(), 100); }
         }
     }
 
@@ -128,10 +138,12 @@ class ControllerPawn {
     // Unclick (Pointer Up)
     onPointerUp(p3d) {
         let avatar = Worldcore.GetPawn(p3d.avatarId);
-        avatar.removeFirstResponder("pointerMove", {}, this);
-        this._startDrag = null;
-        this._baseRotation = null;
-        this.say("slowDown", true);
+        if (this.actor.avatar === avatar.actor.playerId) {
+            avatar.removeFirstResponder("pointerMove", {}, this);
+            this._startDrag = null;
+            this._baseRotation = null;
+            this.say("slowDown", true);
+        }
     }
 
     // Delete Listeners

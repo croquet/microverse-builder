@@ -48,8 +48,7 @@ export function init(Constants) {
                 placeholder: true,
                 placeholderSize: [100, 0.01, 100],
                 placeholderColor: 0xcccccc,
-                placeholderOffset: [0, 0, 0],
-
+                placeholderOffset: [0, 0, 0]
             }
         },
 
@@ -62,7 +61,7 @@ export function init(Constants) {
                 type: "lighting",
                 behaviorModules: ["Light"],
                 dataLocation: "./assets/sky/shanghai_riverside_2k.jpg",
-                dataType: "jpg",
+                dataType: "jpg"
             }
         },
 
@@ -261,7 +260,7 @@ export function init(Constants) {
                 multiuser: false,
                 color: 0x287419
             }
-        },
+        }
 
         // Note: Since a returner completes the same task 
         // as the home button, it is obsoleted.

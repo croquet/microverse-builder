@@ -17,38 +17,39 @@ class TeleporterActor {
     // this.avatar.lookYaw = 0; // Placeholder
     // this.avatar.say("setLookAngles", {pitch: this._cardData.teleportPitch, yaw: 0, lookOffset: [0, 0, 0]}) // Controls Pitch, Offset
 
+    // let raceTrack = this.queryCards().filter((c) => c.name === "track model"); // World Model Finder
+    // if (raceTrack[0]._cardData.carToPlayerMap.get(scope)) { return; } // Map Getter (Does Translation Already Exist)
+    // raceTrack[0]._cardData.carToPlayerMap.set(scope, playerId); // Otherwise, Setter
+
     // Teleport Avatar To Specified Location
     teleportAvatar(data) {
         let {playerId, ratio} = data;
-        let actors = this.queryCards();
-        let avatar = actors.find(o => o.playerId === playerId);
+        let avatar = this.queryCards().find((o) => o.playerId === playerId); // Get Avatar
         this.avatar = avatar;
-        if (ratio < 1.67) { // Phone
+        if (ratio < 1.65) { // Phone
             this.avatar.goTo(this._cardData.teleportLocationP, Worldcore.q_euler(0, this._cardData.teleportYawP, 0), false); // Yaw Control, Avatar Location
             this.avatar.say("setLookAngles", {pitch: this._cardData.teleportPitchP, yaw: 0, lookOffset: [0, 0, 0]}) // Controls Pitch, Offset
         } else { // Computer
             this.avatar.goTo(this._cardData.teleportLocationC, Worldcore.q_euler(0, this._cardData.teleportYawC, 0), false); // Yaw Control, Avatar Location
             this.avatar.say("setLookAngles", {pitch: this._cardData.teleportPitchC, yaw: 0, lookOffset: [0, 0, 0]}) // Controls Pitch, Offset
-        }
+        } 
     }
 
     // Place the Controller
-    defController(ratio) {
-        if (ratio < 1.67) { // Phone
-            this.publish(this._cardData.myScope, "newTranslation", [this._cardData.teleportLocationP[0], this._cardData.teleportLocationP[1] - 5, this._cardData.teleportLocationP[2] - 1.25]);
-        } else { // Computer
-            this.publish(this._cardData.myScope, "newTranslation", [this._cardData.teleportLocationC[0] - 1, this._cardData.teleportLocationC[1] - 5, this._cardData.teleportLocationC[2]]);
-        }
+    defController(data) {
+        let {playerId, ratio} = data; // Phone Vs Computer (P = Phone, C = Computer)
+        if (ratio < 1.65) { this.publish(this._cardData.myScope, "newTranslation", [this._cardData.teleportLocationP[0], this._cardData.teleportLocationP[1] - 5, this._cardData.teleportLocationP[2] - 1.25]); } 
+        else { this.publish(this._cardData.myScope, "newTranslation", [this._cardData.teleportLocationC[0] - 1, this._cardData.teleportLocationC[1] - 5, this._cardData.teleportLocationC[2]]); }
+        this.publish(this._cardData.myScope, "newAvatar", playerId);
     }
 
     // Check if Avatar is at Translation (Phone or Computer)
     checkAvatar() {
-        this.future(100).checkAvatar();
-        let actors = this.queryCards();
-        let avatar = actors.find(o => { 
-            if (o._translation) { 
+        this.future(10).checkAvatar();
+        let avatar = this.queryCards().find((o) => { 
+            if (o._translation) { // If Translation Defined
                 if (Worldcore.v3_equals(o._translation, this._cardData.teleportLocationP, 0.01) || 
-                Worldcore.v3_equals(o._translation, this._cardData.teleportLocationC, 0.01)) { return o; } 
+                Worldcore.v3_equals(o._translation, this._cardData.teleportLocationC, 0.01)) { return o; } // Avatar Already In Position
             } 
         }); 
         this.isOccupied = (avatar !== undefined);
@@ -76,7 +77,7 @@ class TeleporterPawn {
         this.say("checkAvatar"); // Check if Occupied
         if (!this.actor.isOccupied) { // Occupy if Not
             this.say("teleportAvatar", {playerId: this.viewId, ratio: window.innerWidth / window.innerHeight});
-            this.say("defController", window.innerWidth / window.innerHeight);
+            this.say("defController", {playerId: this.viewId, ratio: window.innerWidth / window.innerHeight});
         }
     }
 
