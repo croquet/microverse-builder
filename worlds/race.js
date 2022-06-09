@@ -20,6 +20,20 @@ export function init(Constants) {
     Constants.UseRapier = true;
 
     Constants.DefaultCards = [
+
+        // Spawn Point
+
+        {
+            card: {
+                name: "entrance",
+                translation: [-56.75, 0, 8],
+                rotation: [0, Math.PI, 0],
+                spawn: "default"
+            }
+        },
+
+        // World Model (Track)
+
         {
             card: {
                 name: "track model",
@@ -38,17 +52,6 @@ export function init(Constants) {
 
             }
         },
-        // {
-        //     card: {
-        //         name:"floor model",
-        //         translation:[0, -1.8, 0],
-        //         layers: ["walk"],
-        //         type: "object",
-        //         behaviorModules: ["GridFloor"],
-        //         shadow: true,
-        //         fullBright: true
-        //     }
-        // },
 
         // Light
 
@@ -188,7 +191,7 @@ export function init(Constants) {
                 name:"teleporterone",
                 type: "3d",
                 translation: [-48, -0.4, 24],
-                teleportLocationC: [70, 100, 0], // teleportLocationC: [70, 100, -12],
+                teleportLocationC: [70, 100, 2], // teleportLocationC: [70, 100, -12],
                 teleportPitchC: -(0.36 * Math.PI),
                 teleportYawC: (Math.PI / 2),
                 teleportLocationP: [0, 200, 4], // teleportLocationP: [0, 160, -8],
@@ -207,7 +210,7 @@ export function init(Constants) {
                 name:"teleportertwo",
                 type: "3d",
                 translation: [-48, -0.4, 30],
-                teleportLocationC: [70, 100, 8], // teleportLocationC: [70, 100, -4],
+                teleportLocationC: [70, 100, 10], // teleportLocationC: [70, 100, -4],
                 teleportPitchC: -(0.36 * Math.PI),
                 teleportYawC: (Math.PI / 2),
                 teleportLocationP: [0, 200, 9], // teleportLocationP: [0, 160, -3],
@@ -226,7 +229,7 @@ export function init(Constants) {
                 name:"teleporterthree",
                 type: "3d",
                 translation: [-48, -0.4, 36],
-                teleportLocationC: [70, 100, 16], // teleportLocationC: [70, 100, 4],
+                teleportLocationC: [70, 100, 18], // teleportLocationC: [70, 100, 4],
                 teleportPitchC: -(0.36 * Math.PI),
                 teleportYawC: (Math.PI / 2),
                 teleportLocationP: [0, 200, 15], // teleportLocationP: [0, 160, 3],
@@ -245,7 +248,7 @@ export function init(Constants) {
                 name:"teleporterfour",
                 type: "3d",
                 translation: [-48, -0.4, 42],
-                teleportLocationC: [70, 100, 24], // teleportLocationC: [70, 100, 12],
+                teleportLocationC: [70, 100, 26], // teleportLocationC: [70, 100, 12],
                 teleportPitchC: -(0.36 * Math.PI),
                 teleportYawC: (Math.PI / 2),
                 teleportLocationP: [0, 200, 20], // teleportLocationP: [0, 160, 8],
