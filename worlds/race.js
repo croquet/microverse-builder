@@ -14,7 +14,7 @@ export function init(Constants) {
 
     Constants.UserBehaviorDirectory = "behaviors/race";
     Constants.UserBehaviorModules = [
-        "car.js", "lights.js", "controller.js", "teleporter.js", "grass.js", "cascade.js"
+        "car.js", "lights.js", "controller.js", "teleporter.js", "cascade.js"
     ];
 
     Constants.UseRapier = true;
@@ -26,7 +26,7 @@ export function init(Constants) {
         {
             card: {
                 name: "entrance",
-                translation: [-56.75, 0, 8],
+                translation: [-48, 0, 8],
                 rotation: [0, Math.PI, 0],
                 spawn: "default"
             }
@@ -71,8 +71,8 @@ export function init(Constants) {
             card: {
                 name:"racecarone",
                 dataRotation: [0, -Math.PI / 2, 0],
-                translation: [-58.5, -1.672, 24],
-                startPoint: [-58.5, -1.672, 24],
+                translation: [-58.5, -1.672, 14],
+                startPoint: [-58.5, -1.672, 14],
                 layers: ["pointer"],
                 type: "3d",
                 multiuser: false,
@@ -86,8 +86,8 @@ export function init(Constants) {
             card: {
                 name:"racecartwo",
                 dataRotation: [0, -Math.PI / 2, 0],
-                translation: [-55, -1.672, 30],
-                startPoint: [-55, -1.672, 30],
+                translation: [-55.5, -1.672, 20],
+                startPoint: [-55.5, -1.672, 20],
                 layers: ["pointer"],
                 type: "3d",
                 multiuser: false,
@@ -101,8 +101,8 @@ export function init(Constants) {
             card: {
                 name:"racecarthree",
                 dataRotation: [0, -Math.PI / 2, 0],
-                translation: [-58.5, -1.672, 36],
-                startPoint: [-58.5, -1.672, 36],
+                translation: [-58.5, -1.672, 26],
+                startPoint: [-58.5, -1.672, 26],
                 layers: ["pointer"],
                 type: "3d",
                 multiuser: false,
@@ -116,8 +116,8 @@ export function init(Constants) {
             card: {
                 name:"racecarfour",
                 dataRotation: [0, -Math.PI / 2, 0],
-                translation: [-55, -1.672, 42],
-                startPoint: [-55, -1.672, 42],
+                translation: [-55.5, -1.672, 32],
+                startPoint: [-55.5, -1.672, 32],
                 layers: ["pointer"],
                 type: "3d",
                 multiuser: false,
@@ -189,8 +189,8 @@ export function init(Constants) {
             card: {
                 name:"teleporterone",
                 type: "3d",
-                translation: [-48, -0.4, 24],
-                teleportLocationC: [70, 100, 2], // teleportLocationC: [70, 100, -12],
+                translation: [-48, -0.4, 14],
+                teleportLocationC: [70, 100, -4], // teleportLocationC: [70, 100, -12],
                 teleportPitchC: -(0.36 * Math.PI),
                 teleportYawC: (Math.PI / 2),
                 teleportLocationP: [0, 200, 4], // teleportLocationP: [0, 160, -8],
@@ -208,8 +208,8 @@ export function init(Constants) {
             card: {
                 name:"teleportertwo",
                 type: "3d",
-                translation: [-48, -0.4, 30],
-                teleportLocationC: [70, 100, 10], // teleportLocationC: [70, 100, -4],
+                translation: [-48, -0.4, 20],
+                teleportLocationC: [70, 100, 4], // teleportLocationC: [70, 100, -4],
                 teleportPitchC: -(0.36 * Math.PI),
                 teleportYawC: (Math.PI / 2),
                 teleportLocationP: [0, 200, 9], // teleportLocationP: [0, 160, -3],
@@ -227,8 +227,8 @@ export function init(Constants) {
             card: {
                 name:"teleporterthree",
                 type: "3d",
-                translation: [-48, -0.4, 36],
-                teleportLocationC: [70, 100, 18], // teleportLocationC: [70, 100, 4],
+                translation: [-48, -0.4, 26],
+                teleportLocationC: [70, 100, 12], // teleportLocationC: [70, 100, 4],
                 teleportPitchC: -(0.36 * Math.PI),
                 teleportYawC: (Math.PI / 2),
                 teleportLocationP: [0, 200, 15], // teleportLocationP: [0, 160, 3],
@@ -246,8 +246,8 @@ export function init(Constants) {
             card: {
                 name:"teleporterfour",
                 type: "3d",
-                translation: [-48, -0.4, 42],
-                teleportLocationC: [70, 100, 26], // teleportLocationC: [70, 100, 12],
+                translation: [-48, -0.4, 32],
+                teleportLocationC: [70, 100, 20], // teleportLocationC: [70, 100, 12],
                 teleportPitchC: -(0.36 * Math.PI),
                 teleportYawC: (Math.PI / 2),
                 teleportLocationP: [0, 200, 20], // teleportLocationP: [0, 160, 8],
@@ -260,10 +260,111 @@ export function init(Constants) {
                 multiuser: false,
                 color: 0x287419
             }
-        }
+        },
 
         // Note: Since a returner completes the same task 
         // as the home button, it is obsoleted.
  
+        // Text and Timers
+
+        {
+            card: {
+                name:"welcome",
+                className: "TextFieldActor",
+                translation: [-63.5, 3, 40],
+                rotation: [0, Math.PI / 2, 0],
+                depth: 0.10,
+                type: "text",
+                runs: [{text: "Welcome To Turbo Track!\nClick Teleporter To Start Timer, Complete Three Laps To Show Final Time. GLHF!"}],
+                margins: {left: 30, top: 30, right: 30, bottom: 30},
+                backgroundColor: 0xffffff,
+                color: 0xffffff,
+                frameColor: 0xffffff,
+                width: 9,
+                height: 2,
+                textScale: 0.010,
+                shadow: true
+            }
+        },
+        {
+            card: {
+                name:"timerA",
+                className: "TextFieldActor",
+                translation: [-63.5, 3, 14],
+                rotation: [0, Math.PI / 2, 0],
+                depth: 0.10,
+                type: "text",
+                runs: [{text: "0:00"}],
+                margins: {left: 30, top: 30, right: 30, bottom: 30},
+                backgroundColor: 0x1341a4,
+                color: 0xffffff,
+                frameColor: 0xffffff,
+                width: 5,
+                height: 2,
+                textScale: 0.020,
+                shadow: true,
+                myScope: "A"
+            }
+        },
+        {
+            card: {
+                name:"timerB",
+                className: "TextFieldActor",
+                translation: [-63.5, 3, 20],
+                rotation: [0, Math.PI / 2, 0],
+                depth: 0.10,
+                type: "text",
+                runs: [{text: "0:00"}],
+                margins: {left: 30, top: 30, right: 30, bottom: 30},
+                backgroundColor: 0x76100d,
+                color: 0xffffff,
+                frameColor: 0xffffff,
+                width: 5,
+                height: 2,
+                textScale: 0.020,
+                shadow: true,
+                myScope: "B",
+            }
+        },
+        {
+            card: {
+                name:"timerC",
+                className: "TextFieldActor",
+                translation: [-63.5, 3, 26],
+                rotation: [0, Math.PI / 2, 0],
+                depth: 0.10,
+                type: "text",
+                runs: [{text: "0:00"}],
+                margins: {left: 30, top: 30, right: 30, bottom: 30},
+                backgroundColor: 0x90610e,
+                color: 0xffffff,
+                frameColor: 0xffffff,
+                width: 5,
+                height: 2,
+                textScale: 0.020,
+                shadow: true,
+                myScope: "C",
+            }
+        },
+        {
+            card: {
+                name:"timerD",
+                className: "TextFieldActor",
+                translation: [-63.5, 3, 32],
+                rotation: [0, Math.PI / 2, 0],
+                depth: 0.10,
+                type: "text",
+                runs: [{text: "0:00"}],
+                margins: {left: 30, top: 30, right: 30, bottom: 30},
+                backgroundColor: 0x287419,
+                color: 0xffffff,
+                frameColor: 0xffffff,
+                width: 5,
+                height: 2,
+                textScale: 0.020,
+                shadow: true,
+                myScope: "D",
+            }
+        }
     ];
 }

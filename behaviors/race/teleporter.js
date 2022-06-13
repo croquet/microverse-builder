@@ -41,6 +41,7 @@ class TeleporterActor {
         if (ratio < 1.65) { this.publish(this._cardData.myScope, "newTranslation", [this._cardData.teleportLocationP[0], this._cardData.teleportLocationP[1] - 5, this._cardData.teleportLocationP[2] - 1.25]); } 
         else { this.publish(this._cardData.myScope, "newTranslation", [this._cardData.teleportLocationC[0] - 1, this._cardData.teleportLocationC[1] - 5, this._cardData.teleportLocationC[2]]); }
         this.publish(this._cardData.myScope, "newAvatar", playerId);
+        this.publish(this._cardData.myScope, "startTimer");
     }
 
     // Check if Avatar is at Translation (Phone or Computer)
