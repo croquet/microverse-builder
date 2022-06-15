@@ -25,6 +25,7 @@ export function init(Constants) {
         {
             card: {
                 name: "entrance",
+                type: "object",
                 // same position and orientation as in openPortal.js
                 translation: [-12, -0.4, -10.2],
                 rotation: [0, -Math.PI / 2, 0],
@@ -171,6 +172,7 @@ export function init(Constants) {
                 runs: [{text: "\nWelcome to the Croquet Gallery!\n"}],
                 margins: {left: 20, top: 20, right: 20, bottom: 20},
                 backgroundColor: 0xf4e056,
+                color: 0x00ffff,
                 //color: 0xf4e056,
                 frameColor: frameColor,
                 width: 2,
