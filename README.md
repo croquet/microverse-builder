@@ -1,6 +1,6 @@
 # Croquet Microverse Builder
 
-![Microverse Screenshot](https://croquet.io/images/microversess.png)
+## <span style="color:#ab8d22">Croquet Corporation have released the source code of Croquet Microverse under the open source Apache License 2.0. This repository with minified code will be no longer updated. Please use the [Croquet Microverse repository](https://github.com/croquet/microverse) instead (June 21st, 2022).</span>
 
 ## Description
 
