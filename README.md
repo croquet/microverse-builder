@@ -1,6 +1,8 @@
-# Croquet Microverse Builder
+# Croquet Microverse Builder Alpha (obsolete)
 
 ## <span style="color:#ab8d22">Croquet Corporation have released the source code of Croquet Microverse under the open source Apache License 2.0. This repository with minified code will be no longer updated. Please use the [Croquet Microverse repository](https://github.com/croquet/microverse) instead (June 21st, 2022).</span>
+
+<strike>
 
 ## Description
 
@@ -43,6 +45,8 @@ and then
 6. Open browser at `localhost:9684`. Make sure that your local firewall is not blocking access.
 7. Copy the URL shown in the browser tab and copy it into a new tab. Also, replace localhost with the IP address (probably something like 192.168.0.123) and open it from another device on the local network.
 
+</strike>
+  
 ## Discussion / Contributing
 Join the [Croquet Community Discord](https://discord.gg/9U9MKSbJXS) to talk about the Microverse Builder. We love to hear your feedback.
 
